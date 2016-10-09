@@ -1,0 +1,8 @@
+将 pure 的 开发 文件夹 复制到 本目录
+
+min-output 文件夹, map文件夹，final-output文件夹可能含有上次运行后文件，所以在 处理前 将 3文件夹删除
+
+cmd 依次运行 step1.bat，step2.bat，step3.bat 
+
+final-output即为最后的上线版本
+

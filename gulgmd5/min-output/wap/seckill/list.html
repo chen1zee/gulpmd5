@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/loadmore.js"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js"></script>
+
+</head>
+
+	<body>
+		<section role="main">
+			<!-- 分类产品开始 -->
+			<div id="catalog_product">
+				<ul class="flex_col flex_2_column" id="oneloadmore">
+					<li class="load_more" style="height:24px;line-height24px;padding:10px;">
+						<img src="/static/img/ico/loading.png" alt="加载更多" />
+						<span>加载更多...</span>
+					</li>
+				</ul>
+			</div>
+			<!-- 分类产品结束 -->
+		</section>
+	</body>
+	<!-- 加载更多相关js开始 -->
+	<script>
+		require("common");
+		var Loadmore = require("loadmore");
+		var Imglazyload = require("imglazyload");
+		var type = parseInt(getUrlParam("type"));
+		var title = type == -1 ? "往期秒杀" : "即将开始的秒杀";
+		$(function() {
+			baseJS.App.initPage(title, 0, 0, 1, '', 1, getCartItemCount(), 'gotoCart');
+			loadData(type);
+		});
+
+		function loadData(type) {
+			var loadMore = new Loadmore({
+				'id': 'oneloadmore',
+				'initUrl': server + '/seckill/goodsList.cf?page={pageValue}&pageSize=6&type=' + type,
+				'queryCallback': callBackFunction
+			});
+			loadMore.init();
+			loadMore.load();
+		}
+
+		function callBackFunction(data) {
+			var apendHtml = "";
+			if (data.length > 0) {
+				$("#oneloadmore li.load_more").show();
+				for (var i = 0; i < data.length; i++) {
+					var liHtml = [];
+					liHtml.push('<li class="add"><a target="_blank" href="{0}" title="{1}">');
+					liHtml.push('<img src='+defaultProImg+' _src="{2}" alt="产品" /><div><div class="product_name">');
+					liHtml.push('{3}</div><div class="price_area">');
+					liHtml.push('<span class="discount_price">￥{4}</span></div></div></a></li>');
+					apendHtml += baseJS.util.formatString(liHtml.join(''), '/app/goods/seckill.html?type='+type+'&sid=' + data[i].id,
+						data[i].goodsMessagesDTO.name, data[i].goodsMessagesDTO.thumbnail, data[i].goodsMessagesDTO.name, toMoney(data[i].price));
+				}
+			}
+			Imglazyload.update("#oneloadmore");
+			return apendHtml;
+		};
+	</script>
+
+</html>

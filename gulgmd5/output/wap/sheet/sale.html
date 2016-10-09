@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>公司快报</title>
+    <link rel="stylesheet" href="/static/style/sheet/sale.css"/>
+    <link rel="stylesheet" href="/static/style/LCalendar.min.css"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+</head>
+<body>
+<div class="bg">
+    <!-- 标题-->
+    <h1>
+        销售报表
+    </h1>
+    <!-- 选择报表x轴单位-->
+    <div class="unit-wrap">
+        <p id="selectDay" class="unit-wrap__btn active">日</p>
+        <p id="selectWeek" class="unit-wrap__btn">周</p>
+        <p id="selectMonth" class="unit-wrap__btn">月</p>
+    </div>
+    <div class="date-wrap">
+        <input class="active" id="date" type="text" placeholder="选择日期"/>
+        <input id="ym" type="text" placeholder="选择年月"/>
+        <button id="chartBtn">查&nbsp;询</button>
+    </div>
+
+    <!-- 报表   用  echarts 生成-->
+
+    <div id="chart" class="chart">
+        
+    </div>
+
+    <!-- 报表 以表单形式显示-->
+    <table id="sheet" class="sheet">
+
+    </table>
+
+
+
+    <!-- 最下方公司版权 -->
+<p class="explain">
+    ©2016 金搏软件
+</p>
+
+
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/echarts.js"></script>
+<script type="text/javascript" src="/static/modules/LCalendar.min.js"></script>
+<script type="text/javascript" src="/static/modules/page/sheet/sale.js"></script>
+
+<script>
+    require("page/sheet/sale");
+</script>
+</html>

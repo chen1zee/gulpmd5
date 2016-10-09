@@ -1,0 +1,1 @@
+define("page/test/testOptimize",function(n,t,e){n("jquery"),$(function(){function n(){var n=0;this.a=function(){n=1}}new n})});

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html id="html">
+<head>
+    <title>销售报表</title>
+    <link rel="stylesheet" href="/static/style/report/sale.css?v=157e7"/>
+    <link rel="stylesheet" href="/static/style/LCalendar.min.css?v=ef1d2"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+    <link rel="stylesheet" href="/static/style/jquery.dataTables.min.css?v=728b7"/>
+
+
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+</head>
+<body>
+<div class="bg">
+    <!-- 标题-->
+    <h1>
+        销售报表
+    </h1>
+    <!-- 选择报表x轴单位-->
+    <div class="unit-wrap">
+        <p id="selectDay" class="unit-wrap__btn active">日</p>
+        <p id="selectWeek" class="unit-wrap__btn">周</p>
+        <p id="selectMonth" class="unit-wrap__btn">月</p>
+    </div>
+    <div class="date-wrap">
+        <input readonly="" class="active" id="date" type="text" placeholder="选择日期"/>
+        <input readonly="" id="ym" type="text" placeholder="选择年月"/>
+        <button id="chartBtn">查&nbsp;询</button>
+    </div>
+
+    <!-- 报表   用  echarts 生成-->
+
+    <div id="chart" class="chart">
+        
+    </div>
+
+    <div id="foldBtn">
+        <span>折叠表格</span>
+        <img id="foldBtnImg" src="/static/img/ico/go_down.png?v=e4916" alt=""/>
+    </div>
+    <!-- 报表 以表单形式显示-->
+    <div id="sheetWrap" class="sheet-wrap">
+        <!-- 报表 dataTable插件-->
+        <table id="dataTable">
+            <thead>
+            <tr>
+                <td>店名</td>
+                <td>销量</td>
+                <td>毛利</td>
+                <td>数量</td>
+                <td>客单数</td>
+                <td>毛利率</td>
+            </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+            <tr>
+                <td>合计：</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+
+
+
+    <!-- 最下方公司版权 -->
+<p class="explain">
+    ©2016 金搏软件
+</p>
+
+
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/jquery.dataTables.min.js?v=4c9e9"></script>
+<script type="text/javascript" src="/static/modules/echarts.js?v=ec490"></script>
+<script type="text/javascript" src="/static/modules/LCalendar.min.js?v=892dd"></script>
+<script type="text/javascript" src="/static/modules/newlineEcharts.js?v=05610"></script>
+<script type="text/javascript" src="/static/modules/page/report/sale.js?v=0ad98"></script>
+
+<script>
+    require("page/report/sale");
+</script>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/loadmore.js?v=bab67"></script>
+<script type="text/javascript" src="/static/modules/baiduTemplate.js?v=3cf67"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js?v=1116f"></script>
+
+</head>
+
+	<body>
+		<section role="main">
+			<ul class="my_cards" id="topic_list">
+				<script type="text/template" id="my_cards_tmp">
+					<%if(topicId){%>
+						<%var moneyArr = toMoney(availableMoney).toString().split('.');%>
+						<li class="my_cards_item <%if(topicId==1){%> active <%}%>">
+							<a href="javascript:void(0)">
+								<p class="card_info">
+									<span class="card_title"><%=industryCardName%></span>
+									<span class="card_value">
+										<i class="card_par_value_title">余额</i>
+										<i class="card_par_value">
+											<%=moneyArr[0]%>.
+											<small><%=moneyArr[1]%></small>
+										</i>
+									</span>
+								</p>
+							</a>
+						</li>
+					<%}%>
+				</script>
+			</ul>
+			<div id="catalog_product">
+				<ul class="flex_col flex_2_column" id="oneloadmore">
+					<li class="load_more" style="height:24px;line-height24px;padding:10px;">
+						<img src="/static/img/ico/loading.png?v=feec7" alt="加载更多" />
+						<span>加载更多...</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</body>
+	<script>
+		require("common");
+		var Loadmore = require("loadmore");
+		var baidu = require("baiduTemplate");
+		var Imglazyload = require("imglazyload");
+		
+		$(function() {
+			baseJS.App.initPage(getUrlParam('topicName'), 0, 0, 1, '', 1, getCartItemCount(), 'gotoCart');
+			loadData();
+		});
+
+		function callBackFunction(data) {
+			var apendHtml = "";
+			if (data.length > 0) {
+				$("#oneloadmore li.load_more").show();
+				for (var i = 0; i < data.length; i++) {
+					item = data[i];
+					var liHtml = [];
+					var sale_out_class = data[i].stock <= 0 ? " class = 'sale_out' ":"";
+					liHtml.push('<li class="add"><a'+sale_out_class+' target="_blank" href="{0}" title="{1}">');
+					liHtml.push('<img src ='+defaultProImg+' _src="{2}" alt="产品" /><div><div class="product_name">');
+					liHtml.push('{3}</div><div class="price_area">');
+					liHtml.push('<span class="discount_price">￥{4}</span></div></div></a></li>');
+					apendHtml += baseJS.util.formatString(liHtml.join(''), "/app/goods/index.html?id=" + item.id, item.name, item.thumbnail, item.name, toMoney(item.salesPrice), toMoney(item.originalPrice));
+				}
+			}
+			Imglazyload.update("#oneloadmore");
+			return apendHtml;
+		};
+
+		function loadData() {
+			
+			baseJS.util.doRequest("",server + "/goods/getTopicCardInfoById.cf",{id:parseInt(getUrlParam("topicId"))},function(backData){
+				$('.my_cards').html(baidu.template("my_cards_tmp",backData.data));
+			});
+			
+			var loadMore = new Loadmore({
+				'id': 'oneloadmore',
+				'initUrl': server + '/goods/topicGoodsList.cf?pageNo={pageValue}&topicId='+parseInt(getUrlParam("topicId")),
+				'queryCallback': callBackFunction
+			});
+			loadMore.init();
+			loadMore.load();
+		}
+	</script>
+
+</html>

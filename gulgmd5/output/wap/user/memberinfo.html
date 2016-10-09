@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/style/style.css">
+	<link rel="stylesheet" href="/static/style/memberinfo.css"/>
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/way.min.js"></script>
+<script type="text/javascript" src="/static/modules/page/user/memberinfo.js"></script>
+
+</head>
+<body>
+  <!--start头像及ID信息-->
+  <a class="nav_header" href="/wap/user/memberdetail.html">
+      <img src="/static/img/user/head.jpg">
+      <span class="userinfo" way-scope-break="true">
+          用户名:<span class="username"  way-data="member.username">李四</span><br/>
+         ID:<span id="user_id" way-data="member.id" >001</span>
+      </span>
+  </a>
+  <!--end头像及ID信息-->
+
+  <!--start积分余额信息-->
+  <div class="balanceinfo" way-scope="member">
+      <a>
+        消费余额<br/>
+        <span way-data="money">888</span>元
+      </a>
+      <a>
+         我的积分<br/>
+        <span way-data="integral">0</span>
+      </a>
+      <a>
+        代用券<br/>
+        <span>0</span>
+      </a>
+  </div>
+  <!--end积分余额信息-->
+
+  <!--start订单信息-->
+  <div class="trade_info">
+      <a  href="">
+          <img src="/static/img/user/obligation.png"/><br/>
+          待付款
+      </a>
+      <a  href="">
+          <img src="/static/img/user/pendinggoods.png"/><br/>
+          待发货
+      </a>
+      <a  href="">
+          <img src="/static/img/user/receipt.png"/><br/>
+          待收货
+      </a>
+      <a  href="">
+          <img src="/static/img/user/complete.png"/><br/>
+          已完成
+      </a>
+  </div>
+  <!--end订单信息-->
+  <!--start 其他信息-->
+  <div class="other">
+      <a class="other_list" href="">
+          <img  src="/static/img/user/qrcode.png"/><span>我的二维码</span>
+          <span class="right_point">&gt</span>
+      </a>
+      <a class="other_list" href="/wap/user/memberdetail.html">
+          <img  src="/static/img/user/userinfo.jpg"/><span>我的资料</span>
+          <span class="right_point">&gt</span>
+      </a>
+
+  </div>
+  <!--end 其他信息-->
+</body>
+	<script>
+		require("page/user/memberinfo");
+	</script>
+</html>

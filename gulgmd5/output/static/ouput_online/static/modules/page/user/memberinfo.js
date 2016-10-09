@@ -1,0 +1,1 @@
+define("page/user/memberinfo",function(e){e("common"),way=e("way.min"),$(function(){$(".nav_header img").attr("src","/static/img/user/userinfo.jpg");var e=server+"/member/memberinfo.smg";$.post(e,function(e){"success"==e.status?way.set("member",e.data):"unlogin"==e.status?gotoLogin():"fail"==e.status&&alert("服务器繁忙,请稍后重试")})})});

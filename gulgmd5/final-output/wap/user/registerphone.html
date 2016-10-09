@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>会员注册</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+	<link type="text/css" rel="stylesheet" href="/static/style/style.css?v=5e807">
+
+    <style type="text/css">
+        #id_code{
+            width:60% ;
+            height:30px;
+            background-color: inherit;
+        }
+        .btn_getcode{
+            color:#008000;
+            font-size: 11px;;
+            font-weight: bold;
+            background-color: inherit;
+        }
+        #id_code:focus{
+            background-color: #E6FABB;
+        }
+    </style>
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/page/user/registerphone.js?v=58620"></script>
+
+</head>
+<body>
+  <!--start顶部导航条navbar
+  <div class="navBar">
+      <a style="background-color: inherit;float: left" href="login.html"><img src="../../img/user/back.png"></a>
+      <span class="navTitle">注册账户</span>
+  </div>-->
+   <!--end 顶部导航条navbar-->
+  <form action="" id="registermember" method="post" autocomplete="off">
+   <!--手机号-->
+    <div class="common_white_color tel_in">
+       <input class="register_input" name="telphone" type="tel" placeholder="请输入您的手机号"  required="required"/>
+    </div>
+    <div class="common_white_color tel_in">
+          <input  class="register_input" id="id_passwd" name="passwd" type="password" placeholder="请输入密码"  required="required"/>
+    </div>
+    <div class="common_white_color tel_in">
+         <div class="register_input">
+          <input  id="id_code" name="code" type="text" placeholder="请输入验证码"  required="required"/>
+          <input class="btn_getcode" type="button" value="获取短信验证码"/>
+         </div>
+    </div>
+<!--agree-->
+    <div class="agree_check">
+       <input type="checkbox" name="agreeCheck"/><span>我已阅读并同意<a class="agreement" href="http://www.baidu.com">&lt&lt会员注册协议&gt&gt</a></span>
+    </div>
+    <input class="btn_submit" type="submit" value="提交" disabled="disabled"/>
+</form>
+</body>
+	<script>
+		require("page/user/registerphone");
+	</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/baiduTemplate.js"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js"></script>
+
+</head>
+	<body>
+		<section role="main">
+        <!-- 搜索框开始 -->
+        <div class="simple_search_form" onclick="window.location.href='/app/category/search.html'"><!-- 搜索页.html -->
+            <form action="/category/goodsForSearch.cf" method="get" onsubmit="return false;">
+                <input type="search" name="searchContent" placeholder="搜索喜欢的宝贝" disabled="disabled" style="padding-left:30px;"/>
+                <input type="submit" value="搜索" />
+            </form>
+        </div>
+        <!-- 搜索框结束 -->
+        <!-- 分类列表开始 -->
+        <div id="catalog_list"></div>
+        <script id="catalog_list_tp" type="text/template">
+        	<ul class="flex_col flex_4_column">
+	        	<%for(var i in categoryVOList) {%>
+	        		<%var categoryVO=categoryVOList[i]%>
+	                <li>
+	                    <a href="/app/category/list.html?title=<%=categoryVO.name%>&category=<%=categoryVO.id%>&orderBy=&filter=0" title="<%=categoryVO.name%>">
+	                        <img src="<%=defaultImg%>" _src="<%=categoryVO.imageUrl%>" alt="<%=categoryVO.name%>"  />
+	                        <span><%=categoryVO.name%></span>
+	                    </a>
+	                </li>
+	            <%}%>
+	        </ul>
+        </script>
+        <!-- 分类列表结束 -->
+    </section>
+    <script type="text/javascript">
+    	require("common");
+	    // http://tangram.baidu.com/BaiduTemplate/
+		window.baidu = require("baiduTemplate");
+		var Imglazyload = require("imglazyload");
+
+	    $(function(){
+	    	flushCarItemCount();
+	    	baseJS.util.doRequest('', server + '/category/list.cf', {}, function (backData) { 
+	    		backData.data.defaultImg = defaultProImg;
+	    		setTimeout(function(){
+	    			$("#catalog_list").html(baidu.template("catalog_list_tp",backData.data));
+	    			Imglazyload.update('#catalog_list');
+	    		},100);
+	    	});
+	    });
+		
+		function flushCarItemCount(){
+            baseJS.App.initPage('分类',1,2,1,'',1,getCartItemCount(), 'gotoCart');
+		}
+	</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>会员注册</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/style/style.css">
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/page/user/registercode.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/page/user/registercode.js"></script>
+
+</head>
+<body>
+<!--start顶部导航条navbar
+<div class="navBar">
+    <span class="navTitle">会员注册</span>
+</div>
+-->
+<!--end 顶部导航条navbar-->
+<!--start注册步骤-->
+<div class="common_white_color">
+    <div class="register_step">
+        <span class="step_tip">输入手机号</span>&nbsp;&gt&nbsp;<span class="step_tip">输入验证码&nbsp;&gt&nbsp;</span>&gt<span>输入密码</span>
+    </div>
+</div>
+<form action="/smg_server/member/registercode.smg" method="post" autocomplete="off" onsubmit="return false">
+    <!--手机号-->
+    <div class="common_white_color tel_in">
+        <input id="id_tel" name="code" type="tel" placeholder="请输入验证码"  required="required"/>
+    </div>
+    <input class="btn_submit" type="submit" value="提交验证码" onclick="registerCode()"/>
+</form>
+</body>
+
+<script type="text/javascript">
+	require("page/user/registercode");
+</script>
+
+</html>

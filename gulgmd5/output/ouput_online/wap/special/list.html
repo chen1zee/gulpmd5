@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>专场列表</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/gotop.js"></script>
+<script type="text/javascript" src="/static/modules/loadmore.js"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/gotop.js"></script>
+<script type="text/javascript" src="/static/modules/loadmore.js"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js"></script>
+
+</head>
+
+	<body>
+        <!-- 排序筛选开始 -->
+        <div class="order_filter bg_white up_down_border">
+            <!--最新-->
+            <a class="new_sort" href="javascript:void(0)">最新<i></i></a>
+            <!--价格-->
+            <a class="price_sort" href="javascript:void(0)">价格<i></i></a>
+            <!--销量-->
+            <a class="sale_sort" href="javascript:void(0)">销量<i></i></a>
+            <!-- 筛选 -->
+            <a class="filter_sort" href="javascript:void(0)">筛选<i></i></a>
+        </div>
+        <!-- 排序筛选结束 -->
+		<section style="margin-top: 35px" role="main">
+			<!-- 品牌分类产品开始 -->
+			<div id="catalog_product">
+				<ul class="flex_col flex_2_column" id="oneloadmore">
+					<li class="load_more" style="height:24px;line-height:24px;padding:10px;">
+						<img src="/static/img/ico/loading.png" alt="加载更多" />
+						<span>加载更多...</span>
+					</li>
+				</ul>
+			</div>
+			<!-- 分类产品结束 -->
+		</section>
+		<!-- 遮罩层开始 -->
+		<div class="cover"></div>
+		<!-- 遮罩层结束 -->
+	</body>
+	<!-- 加载更多相关js开始 -->
+	<script>
+		require("common");
+		var goTop = require("gotop");
+		var Loadmore = require("loadmore");
+		var loadMore;
+		var Imglazyload = require("imglazyload");
+		//首次进入品牌分类商品列表时，orderBy为空，默认排序规则为先按照商品的优先级，然后按照商品的更新时间
+		localStorage.filterOpt = '';
+		localStorage.filterJsonData = '';
+		var orderType = '';
+		var orderBy = '';
+		var filter = '';
+
+		//		筛选条件事件绑定
+		$('.new_sort').click(function(){
+			var $this = $(this);
+			if($this.hasClass('actived')){
+				return false;
+			}
+			$this.addClass('actived').siblings('a').removeClass('actived');
+			orderType = 'newSort';
+			orderBy = '';
+			loadData(orderType, orderBy);
+		});
+        $('.price_sort').click(function(){
+            var $this = $(this);
+            $this.siblings('a').removeClass('actived');
+            if(!$this.hasClass('actived')){
+                if(!$this.hasClass('sort_up')){
+                    orderBy = 'ASC';
+                }else{
+                    orderBy = 'DESC';
+                }
+                $this.addClass('actived');
+            }else{
+                if(!$this.hasClass('sort_up')){
+                    $this.addClass('sort_up');
+                    orderBy = 'DESC';
+                }else{
+                    $this.removeClass('sort_up');
+                    orderBy = 'ASC';
+                }
+            }
+            orderType = 'priceSort';
+            loadData(orderType, orderBy);
+        });
+		$('.sale_sort').click(function(){
+			var $this = $(this);
+			if($this.hasClass('actived')){
+				return false;
+			}
+			$this.addClass('actived').siblings('a').removeClass('actived');
+			orderType = 'saleSort';
+			orderBy = '';
+			loadData(orderType, orderBy);
+		});
+		$('.filter_sort').click(function(){
+			newtab('/app/category/filter.html?type=0&id='+parseInt(getUrlParam('id')));
+		});
+		function callBackFunction(data) {
+			var apendHtml = "";
+			if (data.length > 0) {
+				$("#oneloadmore li.load_more").show();
+				for (var i = 0; i < data.length; i++) {
+					var liHtml = [];
+					var sale_out_class = data[i].stock <= 0 ? " class = 'sale_out' ":"";
+					liHtml.push('<li class="add"><a'+sale_out_class+' target="_blank" href="{0}" title="{1}">');
+					liHtml.push('<img src="'+defaultProImg+'" _src="{2}" alt="产品" /><div><div class="product_name">');
+					liHtml.push('{3}</div><div class="price_area">');
+					liHtml.push('<span class="discount_price">￥{4} </span><span class="old_price">{5}</span></div></div></a></li>');
+					data[i].originalPrice = (data[i].originalPrice == data[i].salesPrice || data[i].originalPrice==0) ? "" : "￥" + toMoney(data[i].originalPrice);
+					apendHtml += baseJS.util.formatString(liHtml.join(''), '/app/goods/index.html?id=' + data[i].id,
+						data[i].name, data[i].thumbnail, data[i].name, toMoney(data[i].salesPrice), data[i].originalPrice);
+				}
+			}
+			Imglazyload.update("#oneloadmore");
+			return apendHtml;
+		};
+
+		function loadData(orderType, orderBy) {
+			var filter = "";
+			if(localStorage.filterOpt){
+				$('.filter_sort').addClass('actived');
+				filter =  '&' + $.param($.parseJSON(localStorage.filterOpt));
+			}else{
+				$('.filter_sort').removeClass('actived');
+			}
+			if (loadMore) {
+				loadMore.unbindEventHandler();
+				loadMore.changeLoadLayer(0, '');
+			}
+			$('#oneloadmore li').not('.load_more').remove();
+			Imglazyload.update();
+			loadMore = new Loadmore({
+				'id': 'oneloadmore',
+				'initUrl': server + '/goods/getGoodsForSpecialActivity.cf?page={pageValue}&orderType='+orderType+'&orderBy=' + orderBy + filter + '&specialActivityId=' + parseInt(getUrlParam("id")),
+				'queryCallback': callBackFunction
+			});
+			loadMore.init();
+			loadMore.load();
+		}
+		
+		function doReloadData(){
+			loadData(orderType, orderBy);
+		}
+	</script>
+
+	<script type="text/javascript">
+		$(function() {
+			baseJS.App.initPage(getUrlParam('title'), 0, '', 1, '', 1, getCartItemCount(), 'gotoCart');
+			loadData(orderType, orderBy);
+			goTop.init();
+		});
+	</script>
+
+</html>

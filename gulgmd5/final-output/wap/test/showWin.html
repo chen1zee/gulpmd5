@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<HTML>
+ <HEAD>
+     <title>jQuery实例1：浮动窗口</title>
+     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+     <!--
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     <mce:script type="text/javascript" src="jslib/jquery.js" mce_src="jslib/jquery.js"></mce:script>
+     <mce:script type="text/javascript" src="jslib/jquerywin.js" mce_src="jslib/jquerywin.js"></mce:script>
+-->
+
+    <style type="text/css">
+        #win{
+            /*边框*/
+            border:1px red solid;
+            /*窗口的高度和宽度*/
+            width : 300px;
+            height: 200px;
+            /*窗口的位置*/
+            position : absolute;
+            top : 100px;
+            left: 350px;
+            /*开始时窗口不可见*/
+            display : none;
+        }
+        /*控制背景色的样式*/
+        #title{
+            background-color : blue;
+            color : red;
+            /*控制标题栏的左内边距*/
+            padding-left: 3px;
+        }
+        #cotent{
+            padding-left : 3px;
+            padding-top :  5px;
+        }
+        /*控制关闭按钮的位置*/
+        #close{
+            margin-left: 188px;
+            /*当鼠标移动到X上时，出现小手的效果*/
+            cursor: pointer;
+        }
+    </style>
+ </HEAD>
+
+ <BODY>
+
+ <a onclick="showWin()" href="#" mce_href="#">弹出窗口</a>
+ <div id="win">
+     <div id="title">我是标题栏！<span id="close" onclick="hide()">X</span></div>
+     <div id="content">我是一个窗口！</div>
+ </div>
+
+ </BODY>
+
+ <script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/jquery.form.min.js?v=86ed3"></script>
+<script type="text/javascript" src="/static/modules/page/test/showWin.js?v=fa489"></script>
+
+ <script>
+     require("page/test/showWin");
+ </script>
+
+</HTML>

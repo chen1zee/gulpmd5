@@ -1,0 +1,584 @@
+{
+    "res": {
+        "lib/mod.js": {
+            "uri": "/static/lib/mod.js",
+            "type": "js"
+        },
+        "lib/vue.js": {
+            "uri": "/static/lib/vue.js",
+            "type": "js"
+        },
+        "DateUtil": {
+            "uri": "/static/modules/DateUtil.js",
+            "type": "js",
+            "id": "DateUtil"
+        },
+        "LCalendar.min": {
+            "uri": "/static/modules/LCalendar.min.js",
+            "type": "js",
+            "id": "LCalendar.min"
+        },
+        "baiduTemplate": {
+            "uri": "/static/modules/baiduTemplate.js",
+            "type": "js",
+            "id": "baiduTemplate"
+        },
+        "common": {
+            "uri": "/static/modules/common.js",
+            "type": "js",
+            "deps": [
+                "jquery",
+                "jquery.base"
+            ],
+            "id": "common"
+        },
+        "countdown": {
+            "uri": "/static/modules/countdown.js",
+            "type": "js",
+            "id": "countdown"
+        },
+        "dialog": {
+            "uri": "/static/modules/dialog.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "dialog"
+        },
+        "dragload": {
+            "uri": "/static/modules/dragload.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "dragload"
+        },
+        "echarts": {
+            "uri": "/static/modules/echarts.js",
+            "type": "js",
+            "id": "echarts"
+        },
+        "fastclick": {
+            "uri": "/static/modules/fastclick.js",
+            "type": "js",
+            "id": "fastclick"
+        },
+        "gotop": {
+            "uri": "/static/modules/gotop.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "gotop"
+        },
+        "grid.locale-cn": {
+            "uri": "/static/modules/grid.locale-cn.js",
+            "type": "js",
+            "id": "grid.locale-cn"
+        },
+        "imglazyload": {
+            "uri": "/static/modules/imglazyload.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "imglazyload"
+        },
+        "imglazyload_back": {
+            "uri": "/static/modules/imglazyload_back.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ]
+        },
+        "jquery.base": {
+            "uri": "/static/modules/jquery.base.js",
+            "type": "js",
+            "deps": [
+                "jquery",
+                "plugins/plus"
+            ],
+            "id": "jquery.base"
+        },
+        "jquery.dataTables.min": {
+            "uri": "/static/modules/jquery.dataTables.min.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "jquery.dataTables.min"
+        },
+        "jquery.fmatter": {
+            "uri": "/static/modules/jquery.fmatter.js",
+            "type": "js",
+            "id": "jquery.fmatter"
+        },
+        "jquery.form.min": {
+            "uri": "/static/modules/jquery.form.min.js",
+            "type": "js",
+            "id": "jquery.form.min"
+        },
+        "jquery.jqGrid": {
+            "uri": "/static/modules/jquery.jqGrid.js",
+            "type": "js"
+        },
+        "jquery.jqGrid.min": {
+            "uri": "/static/modules/jquery.jqGrid.min.js",
+            "type": "js",
+            "id": "jquery.jqGrid.min"
+        },
+        "jquery": {
+            "uri": "/static/modules/jquery.js",
+            "type": "js",
+            "id": "jquery"
+        },
+        "loadmore": {
+            "uri": "/static/modules/loadmore.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "loadmore"
+        },
+        "macarons": {
+            "uri": "/static/modules/macarons.js",
+            "type": "js",
+            "deps": [
+                "echarts"
+            ]
+        },
+        "newlineEcharts": {
+            "uri": "/static/modules/newlineEcharts.js",
+            "type": "js",
+            "id": "newlineEcharts"
+        },
+        "page/home/index": {
+            "uri": "/static/modules/page/home/index.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "countdown",
+                "loadmore",
+                "slider",
+                "imglazyload",
+                "gotop",
+                "DateUtil"
+            ],
+            "id": "page/home/index"
+        },
+        "page/home/manager": {
+            "uri": "/static/modules/page/home/manager.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery",
+                "slider",
+                "imglazyload"
+            ],
+            "id": "page/home/manager"
+        },
+        "page/home/message": {
+            "uri": "/static/modules/page/home/message.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery"
+            ],
+            "id": "page/home/message"
+        },
+        "page/report/sale": {
+            "uri": "/static/modules/page/report/sale.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery",
+                "jquery.dataTables.min",
+                "echarts",
+                "LCalendar.min",
+                "newlineEcharts"
+            ],
+            "id": "page/report/sale"
+        },
+        "page/report/search": {
+            "uri": "/static/modules/page/report/search.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery",
+                "jquery.dataTables.min"
+            ],
+            "id": "page/report/search"
+        },
+        "page/seckill/index": {
+            "uri": "/static/modules/page/seckill/index.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "countdown",
+                "gotop"
+            ],
+            "id": "page/seckill/index"
+        },
+        "page/sheet/check": {
+            "uri": "/static/modules/page/sheet/check.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min",
+                "jquery.jqGrid.min",
+                "grid.locale-cn",
+                "jquery.fmatter"
+            ],
+            "id": "page/sheet/check"
+        },
+        "page/sheet/ordercheck": {
+            "uri": "/static/modules/page/sheet/ordercheck.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery",
+                "plugins/md5",
+                "jquery.dataTables.min"
+            ],
+            "id": "page/sheet/ordercheck"
+        },
+        "page/test/echartBar": {
+            "uri": "/static/modules/page/test/echartBar.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery",
+                "echarts"
+            ],
+            "id": "page/test/echartBar"
+        },
+        "page/test/echartPi": {
+            "uri": "/static/modules/page/test/echartPi.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery",
+                "echarts"
+            ],
+            "id": "page/test/echartPi"
+        },
+        "page/test/showWin": {
+            "uri": "/static/modules/page/test/showWin.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min"
+            ],
+            "id": "page/test/showWin"
+        },
+        "page/test/testEchart": {
+            "uri": "/static/modules/page/test/testEchart.js",
+            "type": "js",
+            "deps": [
+                "jquery",
+                "common",
+                "echarts"
+            ],
+            "id": "page/test/testEchart"
+        },
+        "page/test/testOptimize": {
+            "uri": "/static/modules/page/test/testOptimize.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ]
+        },
+        "page/test/waydemo": {
+            "uri": "/static/modules/page/test/waydemo.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "way.min"
+            ],
+            "id": "page/test/waydemo"
+        },
+        "page/user/addmemberaddress": {
+            "uri": "/static/modules/page/user/addmemberaddress.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min",
+                "way.min"
+            ],
+            "id": "page/user/addmemberaddress"
+        },
+        "page/user/cart": {
+            "uri": "/static/modules/page/user/cart.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "tapdelete",
+                "imglazyload",
+                "dialog",
+                "baiduTemplate"
+            ],
+            "id": "page/user/cart"
+        },
+        "page/user/index": {
+            "uri": "/static/modules/page/user/index.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "way.min",
+                "baiduTemplate"
+            ],
+            "id": "page/user/index"
+        },
+        "page/user/login": {
+            "uri": "/static/modules/page/user/login.js",
+            "type": "js",
+            "deps": [
+                "common"
+            ],
+            "id": "page/user/login"
+        },
+        "page/user/memberaddress": {
+            "uri": "/static/modules/page/user/memberaddress.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min",
+                "way.min"
+            ],
+            "id": "page/user/memberaddress"
+        },
+        "page/user/memberinfo": {
+            "uri": "/static/modules/page/user/memberinfo.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "way.min"
+            ],
+            "id": "page/user/memberinfo"
+        },
+        "page/user/order": {
+            "uri": "/static/modules/page/user/order.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "plugins/md5",
+                "loadmore",
+                "dialog",
+                "DateUtil"
+            ],
+            "id": "page/user/order"
+        },
+        "page/user/refreshaddress": {
+            "uri": "/static/modules/page/user/refreshaddress.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "page/user/refreshaddress"
+        },
+        "page/user/registercode": {
+            "uri": "/static/modules/page/user/registercode.js",
+            "type": "js",
+            "deps": [
+                "common"
+            ],
+            "id": "page/user/registercode"
+        },
+        "page/user/registerpassword": {
+            "uri": "/static/modules/page/user/registerpassword.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min"
+            ],
+            "id": "page/user/registerpassword"
+        },
+        "page/user/registerphone": {
+            "uri": "/static/modules/page/user/registerphone.js",
+            "type": "js",
+            "deps": [
+                "common"
+            ],
+            "id": "page/user/registerphone"
+        },
+        "page/user/updatemembername": {
+            "uri": "/static/modules/page/user/updatemembername.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min"
+            ],
+            "id": "page/user/updatemembername"
+        },
+        "page/user/updatememberpass": {
+            "uri": "/static/modules/page/user/updatememberpass.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min"
+            ],
+            "id": "page/user/updatememberpass"
+        },
+        "page/user/upmemberaddress": {
+            "uri": "/static/modules/page/user/upmemberaddress.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min",
+                "way.min"
+            ],
+            "id": "page/user/upmemberaddress"
+        },
+        "page/user/upmembertelstep1": {
+            "uri": "/static/modules/page/user/upmembertelstep1.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min",
+                "way.min"
+            ],
+            "id": "page/user/upmembertelstep1"
+        },
+        "page/user/upmembertelstep2": {
+            "uri": "/static/modules/page/user/upmembertelstep2.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min"
+            ],
+            "id": "page/user/upmembertelstep2"
+        },
+        "page/user/warranty": {
+            "uri": "/static/modules/page/user/warranty.js",
+            "type": "js",
+            "deps": [
+                "common",
+                "jquery.form.min",
+                "page/user/refreshaddress",
+                "DateUtil"
+            ],
+            "id": "page/user/warranty"
+        },
+        "modules/plugins/inputlimitor/jquery.inputlimitor.1.0.css": {
+            "uri": "/static/modules/plugins/inputlimitor/jquery.inputlimitor.1.0.css",
+            "type": "css"
+        },
+        "plugins/inputlimitor/jquery.inputlimitor.1.0": {
+            "uri": "/static/modules/plugins/inputlimitor/jquery.inputlimitor.1.0.js",
+            "type": "js",
+            "deps": [
+                "jquery",
+                "modules/plugins/inputlimitor/jquery.inputlimitor.1.0.css"
+            ]
+        },
+        "plugins/json2": {
+            "uri": "/static/modules/plugins/json2.js",
+            "type": "js"
+        },
+        "plugins/md5": {
+            "uri": "/static/modules/plugins/md5.js",
+            "type": "js",
+            "id": "plugins/md5"
+        },
+        "plugins/plus": {
+            "uri": "/static/modules/plugins/plus.js",
+            "type": "js",
+            "deps": [
+                "style/plus.css",
+                "jquery"
+            ],
+            "id": "plugins/plus"
+        },
+        "slider": {
+            "uri": "/static/modules/slider.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "slider"
+        },
+        "tapdelete": {
+            "uri": "/static/modules/tapdelete.js",
+            "type": "js",
+            "deps": [
+                "jquery"
+            ],
+            "id": "tapdelete"
+        },
+        "way.min": {
+            "uri": "/static/modules/way.min.js",
+            "type": "js",
+            "id": "way.min"
+        },
+        "style/LCalendar.min.css": {
+            "uri": "/static/style/LCalendar.min.css",
+            "type": "css"
+        },
+        "style/common.css": {
+            "uri": "/static/style/common.css",
+            "type": "css"
+        },
+        "style/home/companyInfo.css": {
+            "uri": "/static/style/home/companyInfo.css",
+            "type": "css"
+        },
+        "style/home/message.css": {
+            "uri": "/static/style/home/message.css",
+            "type": "css"
+        },
+        "style/jquery.dataTables.min.css": {
+            "uri": "/static/style/jquery.dataTables.min.css",
+            "type": "css"
+        },
+        "style/main.css": {
+            "uri": "/static/style/main.css",
+            "type": "css"
+        },
+        "style/memberinfo.css": {
+            "uri": "/static/style/memberinfo.css",
+            "type": "css"
+        },
+        "style/plus.css": {
+            "uri": "/static/style/plus.css",
+            "type": "css",
+            "id": "style/plus.css"
+        },
+        "style/recaddress.css": {
+            "uri": "/static/style/recaddress.css",
+            "type": "css"
+        },
+        "style/report/sale.css": {
+            "uri": "/static/style/report/sale.css",
+            "type": "css"
+        },
+        "style/report/search.css": {
+            "uri": "/static/style/report/search.css",
+            "type": "css"
+        },
+        "style/reset.css": {
+            "uri": "/static/style/reset.css",
+            "type": "css"
+        },
+        "style/sheet/orderCheck.css": {
+            "uri": "/static/style/sheet/orderCheck.css",
+            "type": "css"
+        },
+        "style/style.css": {
+            "uri": "/static/style/style.css",
+            "type": "css"
+        },
+        "style/test/echartBar.css": {
+            "uri": "/static/style/test/echartBar.css",
+            "type": "css"
+        },
+        "style/test/echartPi.css": {
+            "uri": "/static/style/test/echartPi.css",
+            "type": "css"
+        },
+        "style/ui.jqgrid.css": {
+            "uri": "/static/style/ui.jqgrid.css",
+            "type": "css"
+        }
+    },
+    "pkg": {}
+}

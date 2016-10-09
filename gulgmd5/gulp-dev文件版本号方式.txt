@@ -1,0 +1,64 @@
+安装Gulp
+
+npm install --save-dev gulp
+分别安装gulp-rev、gulp-rev-collerctor
+
+npm install --save-dev gulp-rev 
+npm install --save-dev gulp-rev-collector
+打开 node_modules\gulp-rev\index.js
+
+第133行 manifest[originalFile] = revisionedFile; 
+更新为: manifest[originalFile] = originalFile + '?v=' + file.revHash;
+
+打开 nodemodules\gulp-rev\nodemodules\rev-path\index.js
+
+10行 return filename + '-' + hash + ext; 
+更新为: return filename + ext;
+
+打开 node_modules\gulp-rev-collector\index.js
+
+31行 if ( path.basename(json[key]).replace(new RegExp( opts.revSuffix ), '' ) !== path.basename(key) ) { 
+更新为: if ( path.basename(json[key]).split('?')[0] !== path.basename(key) ) {
+
+
+
+====================
+gulpfile配置例子：
+var gulp = require("gulp");
+var rev = require("gulp-rev");
+var revCollector = require("gulp-rev-collector");
+
+//---加md5版本后缀
+gulp.task("md5",function(){
+    gulp.src(['./dev/**/**/*.png','./dev/**/**/*.css'])
+        .pipe(rev())
+        .pipe(gulp.dest('./output/'))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest('./map'));
+});
+
+
+//---修改html 文件引用
+gulp.task("rev",function(){//---["md5"],依赖md5先运行，，不过实际中 ，，运行完md5 任务 生成的　map.json 文件 读取不到，，，所以分开成2个任务
+    gulp.src(['./map/*.json','./dev/wap/**/*.html'])
+        .pipe(revCollector())
+        .pipe(gulp.dest('./output/wap'));
+});
+
+
+//---默认任务
+gulp.task("default",['md5','rev']);
+
+
+
+//----------------------结果
+background: url('../img/one.jpg?v=28bd4f6d18');
+ src: url('/fonts/icomoon.eot?v=921bbb6f59');
+
+
+
+
+//----可以直接使用  gulp-rev-md5  & gulp-rev-collector-md5
+//----已进行修改
+
+

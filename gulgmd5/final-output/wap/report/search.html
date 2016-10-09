@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>商品查询</title>
+    <link rel="stylesheet" href="/static/style/jquery.dataTables.min.css?v=728b7"/>
+
+    <link rel="stylesheet" href="/static/style/report/search.css?v=033f1"/>
+    <script src="/static/lib/vue.js?v=833dd"></script>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+</head>
+<body>
+<div id="bg" class="bg">
+    <!-- 标题-->
+    <h1>
+        商品查询
+    </h1>
+
+    <!-- 查询条-->
+    <div class="search-wrap">
+        <div class="search-wrap__left">
+            <input type="text"/>
+            <p class="query-btn">
+                查询
+            </p>
+        </div>
+        <img src="/static/img/ico/scan.png?v=3fc95" alt=""/>
+    </div>
+
+    <!-- 搜索结果-->
+
+    <div class="result">
+        <div class="select-bar">
+            <p class="select-bar__btn active">基本信息</p>
+            <p class="select-bar__btn">库存信息</p>
+            <p class="select-bar__btn">销售情况</p>
+        </div>
+
+        <div class="table-wrap">
+
+            <div class="inner">
+                <!-- 基本信息表-->
+                <table id="dataTable">
+                    <thead>
+                    <tr>
+                        <th>序</th>
+                        <th>商品名称</th>
+                        <th>生产日期</th>
+                        <th>有效期</th>
+                        <th>厂家</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+
+
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- 最下方公司版权 -->
+<p class="explain">
+    ©2016 金搏软件
+</p>
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/jquery.dataTables.min.js?v=4c9e9"></script>
+<script type="text/javascript" src="/static/modules/page/report/search.js?v=1247a"></script>
+
+<script>
+    require("page/report/search");
+</script>
+</html>

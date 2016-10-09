@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/md5.js"></script>
+<script type="text/javascript" src="/static/modules/loadmore.js"></script>
+<script type="text/javascript" src="/static/modules/dialog.js"></script>
+<script type="text/javascript" src="/static/modules/DateUtil.js"></script>
+<script type="text/javascript" src="/static/modules/page/user/order.js"></script>
+
+</head>
+
+	<body>
+		<section role="main">
+			<!-- 导航开始 -->
+			<ul class="nav bg_white">
+				<li class="hover" initurl="" updateurl="">
+					<a href="javascript:void(0)" title="全部订单">全部订单</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" title="待付款">待付款<i id="payment"></i></a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" title="待收货">待收货<i id="confirmReceipt"></i></a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" title="退货">退货</a>
+				</li>
+			</ul>
+			<!-- 导航结束结束 -->
+			<!-- 内容开始 -->
+			<div class="wrap">
+				<div class="order_list row_list">
+					<!-- 全部订单开始 -->
+					<ul id="all_order">
+
+						<li class="load_more" style="height:24px;line-height:24px;padding:10px;">
+							<img src="/static/img/ico/loading.png" alt="加载更多" />
+							<span class="load_text">加载更多...</span>
+						</li>
+					</ul>
+					<!-- 全部订单结束 -->
+
+					<!-- 待付款订单开始 -->
+					<ul id="wait_buyer_pay_order">
+						<li class="load_more" style="height:24px;line-height:24px;padding:10px;">
+							<img src="/static/img/ico/loading.png" alt="加载更多" />
+							<span class="load_text">加载更多...</span>
+						</li>
+					</ul>
+					<!-- 待付款订单结束 -->
+
+					<!-- 待收货订单开始 -->
+					<ul id="wait_buyer_confirm_goods_order">
+						<li class="load_more" style="height:24px;line-height:24px;padding:10px;">
+							<img src="/static/img/ico/loading.png" alt="加载更多" />
+							<span class="load_text">加载更多...</span>
+						</li>
+					</ul>
+					<!-- 待收货订单结束 -->
+					<!-- 申请退货 -->
+					<ul id="wait_buyer_return_goods">
+						<li class="load_more" style="height:24px;line-height:24px;padding:10px;">
+							<img src="/static/img/ico/loading.png" alt="加载更多" />
+							<span class="load_text">加载更多...</span>
+						</li>
+					</ul>
+					<!-- 申请退货结束 -->
+				</div>
+			</div>
+			<!-- 内容结束 -->
+		</section>
+		<!-- 确认订单对话框开始-->
+		<div id="confirm_action_dialog" class="bg_white hide">
+			<p>
+				订单编号：<span id="order_Num"></span>
+			</p>
+			<p>
+				实付：<b id="real_price"></b>
+			</p>
+			<p>
+				兑换方式：
+				<br/>
+				<span id="choosePayWay" class="choose_pay_way"></span>
+			</p>
+            <div>
+                <p class="grey">很遗憾，余额不足~</p>
+                <p style="color: red">您还差<span class="diffMoney">0.00</span>元哦！</p>
+                <img class="rechargeAd" src="/static/img/products/rechargeAd.jpg"/>
+            </div>
+			<p class="align_center">
+				<input id="payPassword" type="password" class="input_paycode enogh" placeholder="请输入支付密码" />
+				<button class="red_button button enogh">确认兑换</button>
+				<span id="confirm_action_dialog_notice" class="notenogh dialog_notice">余额不足，请先充值</span>
+				<button class="red_button button notenogh">去充值</button>
+			</p>
+			<p class="align_center">
+				<button class="cancle_btn button" id="confirm_action_dialog_cancle_btn"></button>
+			</p>
+		</div>
+		<!-- 确认订单对话框结束-->
+
+		<!--未设置支付密码对话框-->
+		<div id="not_set_paycode">
+			<div class="paycode_close_btn"></div>
+			<p>未设置密码</p>
+			<p>您还未设置支付密码，现在去设置？</p>
+			<a href="/app/user/paypassword/new.html" class="go_set_paycode" target="_blank">去设置</a>
+		</div>
+	</body>
+	<script>
+		require("page/user/order");
+	</script>
+</html>

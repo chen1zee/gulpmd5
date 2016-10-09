@@ -1,0 +1,189 @@
+*{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    border:0px;
+    font-family:sans-serif;
+    /*background-color: #F0EFED;*/
+}
+.navBar{
+    height: 40px;
+    background:#48d1cc ;
+    padding: 20px 0px 10px 0px;
+}
+.navBar img{
+    height: 30px;
+    width: 30px;
+    background:#48d1cc;
+    margin-left: 10px;
+}
+/*超链接字体设置*/
+.font_color01{
+    color:#FF555A;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+.font_color01:active {
+    border-bottom: 1px dotted #FF555A;
+}
+.menuBar{
+    display: block;
+    border-top: 1px solid #ececec;
+}
+.navTitle{
+    background:#48d1cc ;
+    display: block;
+    margin: auto auto;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #FFFAFA;
+
+}
+.login_method{
+    height: 68px;
+}
+.name-login, .phone-login{
+    height: 50px;
+    width: 50%;
+    float: left;
+    text-align: center;
+    line-height: 50px;
+    border-bottom: #EFEFEF solid 2px;
+    background-color:inherit;
+}
+.login_method-active{
+    border-bottom: #FF6262 solid 2px;
+    color:#06C1AE ;
+}
+.login_method li{
+    position: relative;
+    float: left;
+    width: 50%;
+    height:50px;
+    background-color:#ffffff;
+    font-size:15px;
+}
+.login_method li:first-of-type::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    right: 0;
+    width: 1px;
+    height: 70%;
+    background: #efefef;
+}
+.login_method a{
+    background-color: inherit;
+}
+.line_padding {
+    padding: 10px 0px;
+    border-bottom: solid #ececec 1px;
+    background-color:#ffffff;
+}
+.line_padding input{
+    height: 30px;
+    width: 95%;
+    display: block;
+    margin: 0px auto;
+    background-color: inherit;
+    border: 0;
+}
+.btn_submit{
+    height: 50px;
+    width: 95%;
+    background-color:#FF666B;
+    margin: 10px auto;
+    border: none;
+    border-radius: 5px;
+    display: block;
+    font-size: 16px;
+    cursor: pointer;
+    color: #FFFAFA;
+    text-align: center;
+}
+.btn_submit:active {
+    background-color: #e85d61;
+}
+#name_login_form .btn_submit,#phone_login_form .btn_submit{
+    margin-top: 20px;
+}
+#phone_login_form{
+    display: none;
+}
+li input:focus{
+    /*background-color: #F9F9F9;*/
+}
+
+.line_padding div{
+    height: 35px;
+    width: 95%;
+    margin: 0px auto;
+    background-color:#ffffff;
+}
+ #phoneNumber{
+     display: inline-block;
+     width:64%;
+     margin-right: 5px;
+     overflow: hidden;
+     background-color:inherit;
+}
+#btn_getCode{
+    display: inline-block;
+    width: auto;
+    background-color:#FF666B;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family:sans-serif ;
+    font-size: 14px;
+    color: #ffffff;
+}
+/*注册页面*/
+.common_white_color{
+    background-color:#ffffff;
+    padding: 15px;
+    border-top: solid #ececec 1px;
+    border-bottom: solid #ececec 1px;
+}
+.register_step{
+    position: relative;
+    width: 80%;
+    margin: auto auto;
+    text-align: center;
+    background-color:#ffffff;
+    font-size:14px ;
+}
+.register_step span{
+    background-color:#ffffff;
+}
+.step_tip{
+    color:#EA3359;
+}
+
+.tel_in{
+    padding: 15px;
+    border-top: solid #ececec 1px ;
+    /*height:30px;*/
+    margin-top: 10px;
+}
+.register_input{
+    display: block;
+    width: 95%;
+    height:30px;
+    margin: 0px auto;
+    background-color: inherit;
+}
+.register_input:focus{
+    background-color: #E6FABB;
+}
+.agree_check{
+    padding: 10px 0px;
+}
+.agree_check input{
+    margin-left: 10px;
+}
+.agree_check .agreement{
+    color:#06C1AE;
+    text-decoration: none;
+}

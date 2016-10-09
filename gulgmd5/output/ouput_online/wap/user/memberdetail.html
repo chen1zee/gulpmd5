@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的账户</title>
+
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/style/style.css">
+	<link rel="stylesheet" href="/static/style/memberinfo.css"/>
+    <style type="text/css">
+        .other{
+            margin-top: 0px;;
+        }
+    </style>
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+
+</head>
+<body>
+	<script>
+		require("common");
+		$(function(){
+			baseJS.App.initPage('我的资料', 0, 1, 0, '', 1, 0, '');
+		});
+	</script>
+
+    <!--start顶部导航条navbar
+    <div class="navBar">
+        <a style="background-color: inherit;float: left" href="/wap/user/memberinfo.html"><img src="../../img/user/back.png"></a>
+        <span class="navTitle">我的账户</span>
+    </div>
+	-->
+    <!--end 顶部导航条navbar-->
+    <div class="other">
+        <a class="other_list" href="updatemembername.html">
+            <img  src="/static/img/user/qrcode.png"/><span class="name_bind">用户名</span>
+            <span class="right_point">&gt</span>
+        </a>
+
+        <a class="other_list" href="/wap/user/updatememberpass.html">
+            <img  src="/static/img/user/userinfo.jpg"/><span>修改登录密码</span>
+            <span class="right_point">&gt</span>
+        </a>
+
+        <a class="other_list" href="/wap/user/upmembertelstep1.html">
+            <img  src="/static/img/user/userinfo.jpg"/><span class="phone_bind">绑定手机号</span>
+            <span class="right_point">&gt</span>
+        </a>
+
+        <a class="other_list" href="/wap/user/memberaddress.html">
+            <img  src="/static/img/user/userinfo.jpg"/><span>收货地址管理</span>
+            <span class="right_point">&gt</span>
+        </a>
+    </div>
+</body>
+</html>

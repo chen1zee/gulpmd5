@@ -1,0 +1,1 @@
+define("newline-echarts",function(e,t,n){function r(e,t,n){return e[n].axisLabel={interval:0,formatter:function(e){var n="",r=e.length,i=t,o=Math.ceil(r/i);if(r>i)for(var a=0;a<o;a++){var f="",s=a*i,c=s+i;f=a==o-1?e.substring(s,r):e.substring(s,c)+"\n",n+=f}else n=e;return n}},e}"object"==typeof n&&"object"==typeof n.exports&&(n.exports=r)});

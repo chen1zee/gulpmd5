@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+	<title>售后登记</title>
+<!--
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta content="height=device-height,width=device-width,user-scalable=no" name="viewport">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta content="telephone=no,email=no" name="format-detection" />
+	<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+	<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+-->
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+
+	<style type="text/css">
+		html, body {
+			color:#222; font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif;
+			margin:0; padding: 0; text-decoration: none;
+		}
+		img { border:0; }
+		ul { list-style: none outside none; margin:0; padding: 0; }
+
+		body {
+			background-color:#eee;
+		}
+		body .mainmenu:after { clear: both; content: " "; display: block; }
+
+		body .mainmenu li{
+			float:left;
+			margin-left: 2.5%;
+			margin-top: 2.5%;
+			width: 46%;
+			border-radius:3px;
+			overflow:hidden;
+		}
+
+		body .mainmenu li a{ display:block;color:#FFF;text-align:center }
+		body .mainmenu li a b{
+			display:block; height:50px;
+		}
+		body .mainmenu li a img{
+			/*margin: 15px auto 15px;*/
+			width: 200px;
+			height: 50px;
+		}
+
+		body .mainmenu li a span{ display:block; height:30px; line-height:30px; font-size:14px; }
+
+		body .mainmenu li:nth-child(8n+1) {background-color:#36A1DB}
+		body .mainmenu li:nth-child(8n+2) {background-color:#678ce1}
+		body .mainmenu li:nth-child(8n+3) {background-color:#8c67df}
+		body .mainmenu li:nth-child(8n+4) {background-color:#84d018}
+		body .mainmenu li:nth-child(8n+5) {background-color:#14c760}
+		body .mainmenu li:nth-child(8n+6) {background-color:#f3b613}
+		body .mainmenu li:nth-child(8n+7) {background-color:#ff8a4a}
+		body .mainmenu li:nth-child(8n+8) {background-color:#fc5366}
+	</style>
+
+</HEAD>
+
+<BODY>
+	<!-- 用户信息开始 -->
+	<div id="user_info">
+		<a href="javascript:void(0)">
+			<div id="user_info_img" class="grey_img"></div>
+			<div id="user_info_detail">
+				<span id="warranty">售后登记</span>
+			</div>
+		</a>
+	</div>
+	<section role="main">
+		<div class="addr_form">
+			<form id="addrForm" method="post" enctype="multipart/form-data">
+				<label>
+				<span style="color:#FF0000">*个人姓名：</span>
+				<!-- onKeyUp="this.value=this.value.replace(/([^\u4e00-\u9fa5a-zA-Z]){1,20}/g,'')" onafterpaste="this.value=this.value.replace(/([^\u4e00-\u9fa5a-zA-Z]){1,20}/g,'')" -->
+				<input type="text" name="customername" id="CustomerName" placeholder="请输入您的姓名" autofocus="true"/>
+			</label>
+				<label>
+				<span style="color:#FF0000">*联系电话：</span>
+				<input type="text" name="phone" id="phone" placeholder="请输入您的联系电话"/>
+			</label>
+			<label>
+				<span>电子邮件：</span>
+				<input type="text" name="mail" id="mail" placeholder="请输入电子邮件" />
+			</label>
+
+				<label>
+				<span>腾讯QQ：</span>
+				<input type="text" name="qq" id="qq" placeholder="请输入QQ号码" />
+			</label>
+
+				<label>
+			<span style="color:#FF0000">*商品名称:</span>
+			 <select  name="goodsid" id="goodsid" placeholder="请选择产品">
+             </select>
+			</label>
+
+				<label>
+			 <span style="color:#FF0000">*商品型号:</span>
+			 <select  name="styleid" id="styleid" placeholder="请选择型号">
+             </select>
+			</label>
+
+			<label>
+				<span style="color:#FF0000">*商品唯一码:</span>
+				<input type="text" name="barcode" id="barcode" placeholder="请输入唯一码" />
+			</label>
+
+			<label>
+				<span>购买价格：</span>
+				<input type="text" name="price" id="price" placeholder="请输入购买价格" />
+			</label>
+				<label>
+				<span>销售商家：</span>
+				<input type="text" name="saleshop" id="saleShop" placeholder="请输入销售商家" />
+			</label>
+			<label>
+			 <span>购买省份:</span>
+			 <select  name="provinceid" id="provinceid" placeholder="请选择省份">
+             </select>
+			</label>
+			<label>
+			 <span>购买城市:</span>
+			 <select  name="cityid" id="cityid" placeholder="请选择城市">
+             </select>
+			</label>
+				<label>
+			 <span>购买区/镇/县:</span>
+			 <select  name="districtid" id="districtid" placeholder="请选择区/镇/县">
+             </select>
+			</label>
+				<label>
+				<span>购买地点：</span>
+				<input type="text" name="address" id="address" placeholder="请输入购买地点" />
+			</label>
+			<label>
+				<span>购买日期：</span>
+				<input type="date" name="saledate" id="saleDate" placeholder="请选择购买日期" />
+			</label>
+			<label>
+				<span>购买凭证：</span>
+				<input type="file"  name="saleInvoice" id="saleInvoice" placeholder="请选择发票图片！" /><!--multiple="multiple"-->
+			</label>
+			<label>
+				<ul class="mainmenu">
+					<!--<li><a href="http://www.baidu.com" ><b><img src="/static/img/products/weidi200_35.jpg?v=22f52" /></b><span>联系我们</span></a></li>
+					<li><a href="/" ><b><img src="/static/img/products/200_35.jpg?v=7f03e" /></b><span>新闻中心</span></a></li>
+					<li><a href="/" ><b><img src="images/tb03.png" /></b><span>产品展示</span></a></li>
+					<li><a href="/" ><b><img src="images/tb04.png" /></b><span>防伪查询</span></a></li>-->
+				</ul>
+			</label>
+			<label>
+				<span>评价：</span>
+				<input type="text" name="remark" id="remark" placeholder="评价" />
+			</label>
+			</form>
+		</div>
+	</section>
+	<span>
+<div class="add_addr_bar" onclick="saveWarrantyCard()">
+<!--<a href="#" onclick="saveWarrantyCard()">-->
+	<img src="/static/img/ico/add_addr.png?v=b9687">提 交</a>
+<br>
+</div>
+</span>
+	<span class="company">联诺科技</span>
+</BODY>
+
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/jquery.form.min.js?v=86ed3"></script>
+<script type="text/javascript" src="/static/modules/page/user/refreshaddress.js?v=ecf58"></script>
+<script type="text/javascript" src="/static/modules/DateUtil.js?v=5fcd0"></script>
+<script type="text/javascript" src="/static/modules/page/user/warranty.js?v=224ca"></script>
+
+<script type="text/javascript">
+	require("page/user/warranty");
+</script>
+
+</HTML>

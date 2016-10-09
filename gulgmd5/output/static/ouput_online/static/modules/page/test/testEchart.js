@@ -1,0 +1,1 @@
+define("page/test/testEchart",function(t){t("jquery"),t("common");var e=t("echarts");$(function(){window.myChart=e.init(document.getElementById("main"));var t={title:{text:"实打实大师大师"},tooltip:{},legend:{data:["销量","单价"]},xAxis:{data:["阿萨德","公司的","个我","分期付","请问"]},yAxis:{},series:[{name:"销量",type:"bar",data:[5,10,20,20,30]}]};myChart.setOption(t)})});

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/loadmore.js"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js"></script>
+<script type="text/javascript" src="/static/modules/gotop.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/loadmore.js"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js"></script>
+<script type="text/javascript" src="/static/modules/gotop.js"></script>
+
+</head>
+
+	<body>
+		<div id="big_special_activity" class="bg_white">
+			<ul id="big_special_activity_list">
+				<li class="load_more" style="height:24px;line-height:24px;padding:10px;">
+					<img src="/static/img/ico/loading.png" alt="加载更多" />
+					<span>加载更多...</span>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<!-- 加载更多相关js开始 -->
+	<script>
+		require("common");
+		var Loadmore = require("loadmore");
+		var Imglazyload = require("imglazyload");
+		var goTop = require("gotop");
+		$(function() {
+			baseJS.App.initPage('推荐专场', 0, '', 1, '', 1, getCartItemCount(), 'gotoCart');
+			goTop.init();
+			var loadMore = new Loadmore({
+				'id': 'big_special_activity_list',
+				'page': 4,
+				'initUrl': server + '/specialactivity/allBigSpecail.cf?pageNo={pageValue}',
+				'queryCallback': loadList
+			})
+			loadMore.init();
+			loadMore.load();
+		});
+		function callBackFunction(data) {
+			var apendHtml = "";
+			if (data.length > 0) {
+				$("#big_special_activity_list li.load_more").show();
+				for (var i = 0; i < data.length; i++) {
+					var liHtml = [];
+					liHtml.push('<li><a href="/app/special/list.html?id={0}&title={1}" target="_blank"><img src="'+defaultImg_612_250+'" _src="{2}" /><div class="big_special_activity_title"><span>{3}</span><span class="fr">{4}</span></div></a></li>');
+					apendHtml += baseJS.util.formatString(liHtml.join(''), data[i].id,data[i].name,data[i].imageUrl,data[i].name,data[i].description);
+				}
+			}
+			
+			Imglazyload.update('#big_special_activity_list');
+			return apendHtml;
+		};
+		var loadList = function(data){
+			return callBackFunction(data);
+		};
+
+		function closeAutoCallback() {
+			flushCarItemCount();
+		}
+
+		function flushCarItemCount() {
+			baseJS.App.initPage('推荐专场', 0, '', 1, '', 1, getCartItemCount(), 'gotoCart');
+		}
+	</script>
+	<!-- 加载更多相关js结束 -->
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>添加收货地址</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/style/style.css">
+    <link rel="stylesheet" href="/static/style/recaddress.css"/>
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.form.min.js"></script>
+<script type="text/javascript" src="/static/modules/way.min.js"></script>
+<script type="text/javascript" src="/static/modules/page/user/addmemberaddress.js"></script>
+
+</head>
+
+<body>
+    <!--start顶部导航条navbar
+    <div class="navBar">
+      <a style="background-color: inherit;float: left" href="/wap/user/memberaddress.html"><img src="../../img/user/back.png"></a>
+      <span class="navTitle">添加收货地址</span>
+    </div>
+-->
+    <form action="" method="post" onsubmit="return false">
+      <div class="container">
+          <div class="container_line">
+             <span class="text_left">姓名:</span><input class="edit_right" name="receiver" type="text" placeholder="最少两个字"/>
+          </div>
+          <div class="container_line">
+              <span class="text_left">电话:</span><input class="edit_right" name="telphone" type="tel" placeholder="不少于七位"/>
+          </div>
+          <div class="container_line">
+              <span class="text_left">省份:</span>
+              <select class="select_right" name="provinceid">
+                  <option value="1">广东</option>
+              </select>
+          </div>
+          <div class="container_line">
+              <span class="text_left">城市:</span>
+              <select class="select_right" name="cityid">
+                  <option  value="1">广州</option>
+              </select>
+          </div>
+          <div class="container_line">
+              <span class="text_left">区县:</span>
+              <select class="select_right" name="districtid">
+                  <option  value="1">天河</option>
+              </select>
+          </div>
+          <div class="container_line">
+              <span class="text_left">地址:</span>
+              <input class="edit_right" name="location" type="tel" placeholder="最少五个字"/>
+          </div>
+      </div>
+
+        <input class="btn_submit" type="submit" value="添加"/>
+    </form>
+</body>
+
+<script>
+	require("page/user/addmemberaddress");
+</script>
+
+</html>

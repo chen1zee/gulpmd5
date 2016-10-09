@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+	<link type="text/css" rel="stylesheet" href="/static/style/style.css?v=5e807">
+	<link rel="stylesheet" href="/static/style/memberinfo.css?v=00d1a"/>
+    <link rel="stylesheet" href="/static/style/recaddress.css?v=1cf28"/>
+
+    <style type="text/css">
+        .other{
+            margin-top: 0px;
+        }
+        .edit_right{
+            width: 97%;
+        }
+        .remark{
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 14px;
+            margin-left: 15px;
+        }
+    </style>
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/jquery.form.min.js?v=86ed3"></script>
+<script type="text/javascript" src="/static/modules/page/user/updatememberpass.js?v=7e561"></script>
+
+</head>
+<body>
+<!--start顶部导航条navbar
+<div class="navBar">
+    <a style="background-color: inherit;float: left" href="/wap/user/memberdetail.html"><img src="../../img/user/back.png"></a>
+    <span class="navTitle">修改密码</span>
+</div>
+-->
+<span class="showerror"></span>
+<form action="" method="post">
+    <div class="container_line">
+        <input class="edit_right" name="oldpass" type="text" placeholder="请输入当前密码"/>
+    </div>
+    <div class="container_line">
+        <input class="edit_right" name="newpass" type="password" placeholder="请输入新密码" required="required"/>
+    </div>
+    <div class="container_line">
+        <input class="edit_right" name="newpass2" type="password" placeholder="请输入新密码" required="required"/>
+    </div>
+    <input class="btn_submit" type="submit" value="修改"/>
+</form>
+</body>
+
+<script>
+	require("page/user/updatememberpass");
+</script>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+    <link type="text/css" rel="stylesheet" href="/static/style/style.css?v=5e807">
+    <link rel="stylesheet" href="/static/style/memberinfo.css?v=00d1a"/>
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/way.min.js?v=d982f"></script>
+<script type="text/javascript" src="/static/modules/baiduTemplate.js?v=3cf67"></script>
+<script type="text/javascript" src="/static/modules/page/user/index.js?v=20270"></script>
+
+</head>
+
+<body>
+<!--start头像及ID信息-->
+<a class="nav_header" href="/wap/user/memberdetail.html">
+    <img src="/static/img/user/head.jpg?v=5a2d9">
+      <span class="userinfo" way-scope-break="true">
+			用户名:<span class="username" way-data="member.username">李四</span>
+			<br/>ID:<span id="user_id" way-data="member.id">001</span>
+      </span>
+</a>
+<!--end头像及ID信息-->
+
+<!--start积分余额信息-->
+<div class="balanceinfo" way-scope="member">
+    <a>
+        我的余额<br/>
+        <span way-data="money">888</span>元
+    </a>
+    <a>
+        我的积分<br/>
+        <span way-data="integral">0</span>
+    </a>
+    <a>
+        代用券<br/>
+        <span>0</span>
+    </a>
+</div>
+<!--end积分余额信息-->
+
+<!--start订单信息-->
+<div class="trade_info">
+    <a href="">
+        <img src="/static/img/user/obligation.png?v=78a45"/><br/>
+        待付款
+    </a>
+    <a href="">
+        <img src="/static/img/user/pendinggoods.png?v=fc050"/><br/>
+        待发货
+    </a>
+    <a href="">
+        <img src="/static/img/user/receipt.png?v=e0224"/><br/>
+        待收货
+    </a>
+    <a href="">
+        <img src="/static/img/user/complete.png?v=cc75f"/><br/>
+        已完成
+    </a>
+</div>
+
+<section role="main">
+    <!-- 用户信息开始 -->
+    <div id="user_info">
+        <a href="javascript:void(0)">
+
+            <!--<div id="user_info_img" class="grey_img"></div>-->
+            <div id="user_info_detail">
+                <span id="userPhone"></span>
+                <span id="userMoney" style="font-size: .8em;">提成：0￥</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- 用户信息结束 -->
+    <!-- 功能列表开始 -->
+    <ul class="func_row_list bg_white up_down_border">
+
+        <li id="myQrBarcode">
+            <a href="/wap/user/qrcode.html" title="我的二维码">
+                <img src="/static/img/ico/qrcode.png?v=616ed" alt="我的二维码"/>
+                <div class="func_title">
+                    <span>我的二维码</span>
+                    <span id="cartItemNum"></span>
+                    <div class="go_right"></div>
+                </div>
+            </a>
+        </li>
+
+        <li id="myCart">
+            <a href="/wap/user/cart.html" title="我的购物车">
+                <img src="/static/img/ico/cart.png?v=422bf" alt="购物车"/>
+                <div class="func_title">
+                    <span>我的购物车</span>
+                    <span id="cartItemNum"></span>
+                    <div class="go_right"></div>
+                </div>
+            </a>
+        </li>
+        <li id="myOrder">
+            <a href="/wap/user/order.html" title="我的订单">
+                <img src="/static/img/ico/order.png?v=6d5b7" alt="订单"/>
+                <div class="func_title">
+                    <span>我的订单</span>
+                    <span id="dealOrderNum"></span>
+                    <div class="go_right"></div>
+                </div>
+            </a>
+        </li>
+
+    </ul>
+
+    <ul class="func_row_list bg_white up_down_border">
+
+        <li id="receiptAddress">
+            <a target="_blank" href="/wap/user/address/index.html?type=0" title="收货地址">
+                <img src="/static/img/ico/addr.png?v=ab06c" alt="收货地址"/>
+                <div class="func_title">
+                    <span>收货地址</span>
+                    <div class="go_right"></div>
+                </div>
+            </a>
+        </li>
+
+    </ul>
+    <ul class="func_row_list bg_white up_down_border">
+        <li id="myInfo">
+            <a href="/wap/user/memberdetail.html" title="我的资料">
+                <img src="/static/img/ico/user.png?v=7be7d" alt="我的资料"/>
+                <div class="func_title">
+                    <span>我的资料</span>
+                    <span id="cartItemNum"></span>
+                    <div class="go_right"></div>
+                </div>
+            </a>
+        </li>
+
+        <li id="feedback">
+            <a target="_blank" href="/feedback/addFeedback.cf" title="意见反馈">
+                <img src="/static/img/ico/feedback.png?v=bf321" alt="意见反馈"/>
+                <div class="func_title">
+                    <span>意见反馈</span>
+                    <div class="go_right"></div>
+                </div>
+            </a>
+        </li>
+        <li id="helpCenter">
+            <a target="_blank" href="/wap/user/help.html" title="帮助中心">
+                <img src="/static/img/ico/help.png?v=a52ce" alt="帮助中心"/>
+                <div class="func_title">
+                    <span>帮助中心</span>
+                    <div class="go_right"></div>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+    <!-- 功能列表结束 -->
+</section>
+</body>
+<script>
+    require("page/user/index");
+</script>
+
+</html>

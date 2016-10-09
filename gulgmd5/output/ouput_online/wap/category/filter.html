@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>筛选</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/fastclick.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/fastclick.js"></script>
+
+</head>
+
+	<body>
+		<div class="filter">
+			<!--价格区间-->
+			<div data-id="price" class="filter-price filter-item">
+				<label for="">价格区间：</label>
+				<span class="filter-price-input">
+	            	<input class="filter-price-start" type="tel" maxlength="9" placeholder="起始价格"/>
+	            	<i class="spliter">—</i>
+	            	<input class="filter-price-end" type="tel" maxlength="9" placeholder="终止价格"/>
+            	</span>
+			</div>
+
+			<!--分类筛选-->
+			<ul id="category" class="filter-item filter-category cb hide">
+				<input type="hidden" id="category_val" value="" />
+				<h1 class="filter-title">分类</h1>
+				<li data-id="" class="default_item">全部</li>
+			</ul>
+
+			<!-- 品牌筛选 -->
+			<ul id="brand" class="filter-item filter-brand cb hide">
+				<input type="hidden" id="brand_val" value="" />
+				<h1 class="filter-title">品牌</h1>
+				<li data-id="" class="default_item">全部</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		require("common");
+		var attachFastClick = require('fastclick');
+		attachFastClick(document.body);
+		var urls = ["/goods/getSpecialActivityFilterData.cf","/goods/getCategoryFilterData.cf"]; // 接口数组
+		var params = ["specialActivityId","categoryId"]; // 参数数组
+			
+		// 列表选择事件
+		$('.filter').on('click', 'li', function() {
+			var $this = $(this);
+			$this.addClass('actived').siblings().removeClass('actived');
+			$this.siblings("input").val($this.data("id"));
+		});
+			
+		$(function() {
+			baseJS.App.initPage('筛选', 0, '', 2, '确定', 1, '', "doFilter");
+			// 初始化
+			var filterData = getFilterData();
+			if(filterData.categoryList){
+				renderList("category",filterData.categoryList);
+			}
+			if(filterData.brandList){
+				renderList("brand",filterData.brandList);
+			}
+			
+			if (localStorage.filterOpt) {
+				var fliterOpt = $.parseJSON(localStorage.filterOpt);
+				$.each(fliterOpt, function(k, v) {
+					if (k == 'startPrice') {
+						$('.filter-price-start').val(v);
+					}
+					if (k == 'endPrice') {
+						$('.filter-price-end').val(v);
+					}
+					v = v||"''";
+					if (k == 'categoryId') {
+						$('#category').children("li[data-id="+v+"]").click();
+					}
+					if (k == 'brandsId') {
+						$('#brand').children("li[data-id="+v+"]").click();
+					}
+				});
+			}else{
+				$('.default_item').click();
+			}
+			
+		});
+		
+		// 获取过滤数据
+		function getFilterData(){
+			if(!localStorage.filterJsonData){
+				var type = parseInt(getUrlParam("type")) || 0;
+				var id = parseInt(getUrlParam("id")) || 0;
+				var paramObj = {};
+				paramObj[params[type]] = id;
+				baseJS.util.doRequest("",server+urls[type], paramObj, function(backData){
+					if(backData.status == "success"){
+						localStorage.filterJsonData = JSON.stringify(backData.data);
+					}
+				},false);
+			}
+			return $.parseJSON(localStorage.filterJsonData);
+		}
+		
+		/*
+		 * 渲染列表
+		 * @param {String} selector 需要被渲染的选择器
+		 * @param {Object} data 数据
+		 */
+		function renderList(selector,data){
+			if(!selector || !data) return false;
+			var listItems = "";
+			for(var i in data){
+				listItems += "<li data-id='"+data[i].id+"'>"+data[i].name+"</li>";
+			}
+			$('#'+selector).append(listItems).show();
+		}
+		
+		 //  价格区间检查
+		function priceCheck() {
+			var priceStart = $('.filter-price-start').val();
+			var priceEnd = $('.filter-price-end').val();
+			var reg = /^[1-9]\d*$/;
+			
+			if (priceStart !== '' && !reg.test(priceStart)) {
+				alert('起始价格只能填写整数');
+				return false;
+			}
+			if (priceEnd !== '' && !reg.test(priceEnd)) {
+				alert('终止价格只能填写整数');
+				return false;
+			}
+			if (parseInt(priceStart) > parseInt(priceEnd)) {
+				alert('起始价格不能大于终止价格');
+				return false;
+			}
+			return true;
+		}
+		
+		// 确定回调事件
+		function doFilter() {
+			if(!priceCheck()) return false;
+			var opt = {
+				"startPrice":$('.filter-price-start').val(),
+				"endPrice":$('.filter-price-end').val()
+			};
+			
+			if($('#category:visible').size()>0){
+				opt.categoryId = $('#category_val').val();
+			}
+			if($('#brand:visible').size()>0){
+				opt.brandsId = $('#brand_val').val();
+			}
+			
+			localStorage.filterOpt = JSON.stringify(opt);
+			baseJS.App.sendToApp('close', '{"callback":"doReloadData"}');
+		};
+	</script>
+
+</html>

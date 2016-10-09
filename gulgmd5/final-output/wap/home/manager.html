@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>药店管理高管版</title>
+    <link rel="stylesheet" href="/static/style/home/companyInfo.css?v=bf6e8"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+</head>
+<body>
+<div class="bg">
+    <h1>药店管理高管版</h1>
+    <!-- 上方 大图滚动 -->
+    <div class="slider-wrap">
+        <div id="sliderInner" class="slider-inner clearfix">
+            <a href="###" >
+                <img class="slider-img" _src="/static/img/home/rolling.jpg?v=33a7c" alt="">
+            </a>
+            <a href="###" >
+                <img class="slider-img" _src="/static/img/home/rolling.jpg?v=33a7c" alt="">
+            </a>
+            <a href="###" >
+                <img class="slider-img" _src="/static/img/home/rolling.jpg?v=33a7c" alt="">
+            </a>
+            <a href="###">
+                <img class="slider-img" _src="/static/img/home/rolling.jpg?v=33a7c" alt="">
+            </a>
+        </div>
+    </div>
+    <!-- 文字滚动 -->
+    <div class="roll-wrap clearfix">
+        <a href="message.html" class="title manage-color">公司快报</a>
+        <p class="para clearfix">
+            <a class="mid" href="message.html" id="companyMessage"></a>
+        </p>
+    </div>
+    <!-- 对比盈利-->
+    <!-- 点击发送请求刷新数据 ，并且限制刷新时间-->
+    <div id="incomeWrap" class="income-wrap">
+        <div class="day">
+            <p class="title">
+                <span>今天</span>
+                <span class="right">排名:2</span>
+            </p>
+            <p class="income">
+                <span class="price">0.00</span>
+                <span class="red">元</span>
+            </p>
+            <p class="diff">
+                <span>比昨日</span><span class="price">0.00</span>
+                <span class="flag decrease"></span>
+            </p>
+        </div>
+        <div class="week">
+            <p class="title">
+                <span>本周</span>
+                <span class="right">排名:2</span>
+            </p>
+            <p class="income">
+                <span class="price">0.00</span>
+                <span class="red">元</span>
+            </p>
+            <p class="diff">
+                <span>比同期</span><span class="price">0.00</span>
+                <span class="flag increase"></span>
+            </p>
+        </div>
+        <div class="month">
+            <p class="title">
+                <span>本月</span>
+                <span class="right">排名:2</span>
+            </p>
+            <p class="income">
+                <span class="price">0.00</span>
+                <span class="red">元</span>
+            </p>
+            <p class="diff">
+                <span>比同期</span><span class="price">0.00</span>
+                <span class="flag decrease"></span>
+            </p>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- 选项格 -->
+    <div class="option-wrap">
+        <div class="cell">
+            <div class="title-wrap clearfix">
+                <div class="left manage-color"></div>
+                <p>数据报表</p>
+            </div>
+
+            <table id="paraWrap" class="para-wrap">
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="../report/sale.html" class="btn-wrap">
+                            <img _src="/static/img/sheeticon/sale_search.png?v=e30e5" alt=""/>
+                            <p>销售查询</p>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="###" class="btn-wrap">
+                            <img _src="/static/img/sheeticon/shop_sale.png?v=62430" alt=""/>
+                            <p>门店销售</p>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="###" class="btn-wrap">
+                            <img _src="/static/img/sheeticon/class_sale.png?v=b4cf0" alt=""/>
+                            <p>类别销售</p>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="###" class="btn-wrap">
+                            <img _src="/static/img/sheeticon/shop_sale.png?v=62430" alt=""/>
+                            <p>门店类别销售</p>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="###" class="btn-wrap">
+                            <img _src="/static/img/sheeticon/vip_sale.png?v=cf4d4" alt=""/>
+                            <p>会员销售</p>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="###" class="btn-wrap">
+                            <img _src="/static/img/sheeticon/vip_sale.png?v=cf4d4" alt=""/>
+                            <p>门店会员销售</p>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="###" class="btn-wrap">
+                            <img _src="/static/img/sheeticon/good_search.png?v=e2582" alt=""/>
+                            <p>商品综合查询</p>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- 最下方公司版权 -->
+<p class="explain">
+    ©2016 金搏软件
+</p>
+
+
+
+</div>
+
+
+
+
+<!--下方TAB切换-->
+<!--<div class="footer">-->
+    <!--<div class="table-cell">-->
+        <!--<a href="###">-->
+            <!--<img src="/static/img/ico/home-active.png?v=e837d" alt=""/>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="table-cell">-->
+        <!--<a href="###">-->
+            <!--<img src="/static/img/ico/home.png?v=cd3ae" alt=""/>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="table-cell">-->
+        <!--<a href="###">-->
+            <!--<img src="/static/img/ico/home.png?v=cd3ae" alt=""/>-->
+        <!--</a>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+
+</body>
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/slider.js?v=f1736"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js?v=1116f"></script>
+<script type="text/javascript" src="/static/modules/page/home/manager.js?v=97599"></script>
+
+<script defer async="">
+    require("page/home/manager");
+</script>
+</html>

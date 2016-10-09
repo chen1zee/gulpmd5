@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/tapdelete.js?v=77def"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js?v=1116f"></script>
+<script type="text/javascript" src="/static/modules/dialog.js?v=c719d"></script>
+<script type="text/javascript" src="/static/modules/baiduTemplate.js?v=3cf67"></script>
+<script type="text/javascript" src="/static/modules/page/user/cart.js?v=a74e3"></script>
+
+</head>
+
+	<body>
+		<section role="main" id="cart_list_content">
+			<div class="cart_product_status_notice" style="display:none">
+				部分宝贝已下架,请使用左滑删除
+			</div>
+			<!-- 底部固定功能开始 -->
+			<div class="footer_nav bg_white footer_nav_opt" style="display:none">
+				<div class="select_all">全选</div>
+				<div class="foot_right">
+					<a class="sh_delete_button delete_btn" href="javascript:void(0)"></a>
+				</div>
+			</div>
+			<!-- 底部固定功能结束 -->
+
+            <!-- 产品购买参数开始 -->
+            <div class="product_param" id="product_param_dialog" style="display: none"></div>
+            <!-- 产品购买参数结束 -->
+		</section>
+		<section role="" id="empty_cart" style="display:none">
+			<!-- 结果显示 -->
+			<div class="cart_info">
+				<img src="/static/img/ico/empty_cart.png?v=84d24" alt="">
+				<p>购物车是空的，不嗨森</p>
+			</div>
+			<!-- 更多选项 -->
+			<div class="gohome"><a href="/app/home/index.html">去寻货</a>
+			</div>
+		</section>
+        <!--商品规格-->
+        <script type="text/template" id="_product_param_dialog">
+                <i class="close_btn"></i>
+                <form action="#" id="orderform" method="post">
+                    <input type="hidden" name="price" value="<%=goodsMessagesDTO.salesPrice%>">
+                    <!-- 单价 -->
+                    <input type="hidden" name="goodsId" value="<%=goodsMessagesDTO.id%>">
+                    <!-- 商品ID -->
+                    <input type="hidden" name="totalPrice" value="goodsMessagesDTO.salesPrice">
+                    <input type="hidden" name="standard" value="<%=goodsMessagesDTO.standard%>">
+                    <!-- 规格 -->
+                    <input type="hidden" value="" name="gavIds" id="gavIds" class="param_p_item_value" />
+                    <!-- 是否单一规格 -->
+                    <%if(goodsMessagesDTO.standard==1){%>
+                    <%for(var i in goodsMessagesDTO.attributesMessageMap.attributeMap){%>
+                    <%var attributeListItem=goodsMessagesDTO.attributesMessageMap.attributeMap[i]%>
+                    <div class="param_p attribute_content" data-title="<%=i%>">
+                        <div class="param_p_title">
+                            选择<%=i%>
+                        </div>
+                        <ul class="param_p_items">
+                            <%for(var j in attributeListItem){%>
+                            <li><%=attributeListItem[j]%></li>
+                            <%}%>
+                        </ul>
+                    </div>
+                    <%}%>
+                    <%}%>
+                    <%if(goodsMessagesDTO.standard==0){%>
+                    <div>单一规格</div>
+                    <%}%>
+                    <div class="param_p">
+                        <div class="param_p_title">
+                            <span class="num_adjust_text">购买数量</span>
+                            <div class="num_adjust_btn">
+                                <i class="num_adjust_btn_minus" ontouchstart="numAjust(-1);return false;"></i>
+                                <i class="num_adjust_btn_text" id="p_goodsNum">1</i>
+                                <i class="num_adjust_btn_plus" ontouchstart="numAjust(1);return false;"></i>
+                                <input type="hidden" value="1" name="quantity" id="quantity" class="param_p_item_value" />
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="form_footer">
+                        <p>
+                            总价：<b class="p_total_money">￥<%=toMoney(goodsMessagesDTO.salesPrice)%></b>
+                            <br />
+                            <small>（库存<span id="product_total_num"><%=goodsMessagesDTO.stock%></span>件）</small>
+                        </p>
+                        <button class="red_button" type="submit" id="confirmButton">确定</button>
+                    </div>
+                </form>
+        </script>
+	</body>
+	<script>
+		require("page/user/cart");
+	</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+
+</head>
+	<body>
+		<script type="text/javascript">
+			require("common");
+			var shopName = getShopName();
+		    try{
+
+				var wxid=getUrlParam("id");
+				var wxURL="?id="+wxid;
+				if (wxid===null){
+					wxURL="";
+				}
+				var host = window.location.origin;
+				baseJS.App.sendToApp("init",'[{"pageName":"'+shopName+'","url":"'+host+'/wap/home/index.html'+wxURL+'","icon":""},{"pageName":"分类","url":"'+host+'/wap/category/index.html","icon":""},{"pageName":"我的","url":"'+host+'/wap/user/index.html","icon":""}]');
+		    }catch(e){
+		    	console.log(e.message);
+		    	alert('请检查网络，重新进入商城');
+		    }
+    	</script>
+	</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/countdown.js?v=3706f"></script>
+<script type="text/javascript" src="/static/modules/gotop.js?v=e8d1f"></script>
+<script type="text/javascript" src="/static/modules/dialog.js?v=c719d"></script>
+<script type="text/javascript" src="/static/modules/slider.js?v=f1736"></script>
+<script type="text/javascript" src="/static/modules/baiduTemplate.js?v=3cf67"></script>
+<script type="text/javascript" src="/static/modules/dragload.js?v=77237"></script>
+
+</head>
+
+	<body>
+		<section role="main">
+			<script type="text/template" id="seckill_tmp">
+				<!-- 产品图片开始 -->
+				<div id="product_slide" class="slide wfull">
+					<div style="-webkit-transform: translate3d(0px, 0, 0); -webkit-transition: 300ms; -webkit-transition-delay:0; ">
+						<%for(var i in seckillConfigDetailDTO.goodsMessagesDTO.imagesUrlList){%>
+							<a href="javascript:void(0)">
+								<img src="<%=seckillConfigDetailDTO.goodsMessagesDTO.imagesUrlList[i]%>" width="320" height="320" />
+							</a>
+						<%}%>
+					</div>
+				</div>
+				<!-- 产品图片结束 -->
+				<!-- 产品信息开始 -->
+				<div class="product_info bg_white">
+					<div class="product_name">
+						<%=seckillConfigDetailDTO.goodsMessagesDTO.name%>
+					</div>
+					<div class="price_area">
+						<span class="discount_price">￥<%=toMoney(seckillConfigDetailDTO.price)%>&nbsp;&nbsp;&nbsp;</span>
+						<!--<%if(seckillConfigDetailDTO.price != seckillConfigDetailDTO.goodsMessagesDTO.originalPrice && 0 != seckillConfigDetailDTO.goodsMessagesDTO.originalPrice){%>-->
+                        <%if(0 != seckillConfigDetailDTO.goodsMessagesDTO.originalPrice){%>
+							<small class="grey"> 原价：</small>
+							<span class="old_price">￥<%=toMoney(seckillConfigDetailDTO.goodsMessagesDTO.originalPrice)%></span>
+						<%}%>
+					</div>
+					<%if(seckillConfigDetailDTO.attributeValue){%>
+						<div class="product_name standard">
+							<%=seckillConfigDetailDTO.attributeValue%>
+						</div>
+					<%}%>
+					<%if(seckillConfigDetailDTO.goodsMessagesDTO.productCode){%>
+						<ul class="product_format_param">
+							<li>商品货号：&nbsp;&nbsp;&nbsp;&nbsp;<%=seckillConfigDetailDTO.goodsMessagesDTO.productCode%></li>
+						</ul>
+					<%}%>
+				</div>
+				<div id="detailCountDown">
+					<span id="time_num_title" style="padding: 10px;float: left;"></span> <span style="display: none" class="time bg_white" id="time_num" class="time_num"> 00:00:00</span> <span style="display: none" class="time bg_white" id="time_num_1" class="time_num"> 00:00:00</span>
+				</div>
+				<!-- 产品信息开始 -->
+				<!-- 宝贝介绍开始 -->
+				<div class="product_introduce">
+					<div class="product_introduce_title">宝贝介绍</div>
+					<div class="product_intorduce_content bg_white" id="detail_content">
+						<!-- 宝贝介绍详细内容开始 -->
+						<button class="load_detail_btn">向上拖动查看详情</button>
+						<!-- 宝贝介绍详细内容结束 -->
+					</div>
+					<div class="product_imgs" style="display: none;padding: 0px 10px;">
+						<%for(var i in seckillConfigDetailDTO.goodsMessagesDTO.imagesUrlList){%>
+							<img src="<%=seckillConfigDetailDTO.goodsMessagesDTO.imagesUrlList[i]%>" width="100%"  />
+						<%}%>
+					</div>
+				</div>
+				<!-- 宝贝介绍结束 -->
+
+                <!--售后说明-->
+                <div class="product_sale">
+                    <div class="product_introduce_title"><a href="javascript:void(0)">售后说明</a></div>
+                    <div class="content bg_white">支持7天无理由退货，请放心购买。（秒杀商品除外）</div>
+                </div>
+                <!--购买咨询-->
+                <div class="product_ask">
+                    <div class="product_introduce_title"><a href="../user/help.html">购买咨询</a></div>
+                    <div class="content bg_white">客服热线：4008450020</div>
+                </div>
+			</script>
+
+			<!-- 底部固定功能开始 -->
+			<div class="footer_nav bg_white">
+				<a class="grey_button buy_btn" style="visibility: hidden;" id="buyRightNow" disabled="disabled" href="javascript:void(0)" title="">立即抢购</a>
+			</div>
+
+			<!--未设置支付密码对话框-->
+			<div id="not_set_paycode">
+				<div class="paycode_close_btn"></div>
+				<p>未设置密码</p>
+				<p>您还未设置支付密码，现在去设置？</p>
+				<a href="javascript:void(0)" class="go_set_paycode" onclick="goToSetUp();">去设置</a>
+			</div>
+			<!--未设置支付密码对话框-->
+
+			<!--未设置邮寄地址对话框-->
+			<div id="not_set_addr">
+				<div class="addr_close_btn"></div>
+				<p>未设置地址</p>
+				<p>秒杀即将开始哦，请提前设置您的收件地址，提高秒中几率哦！</p>
+				<a href="javascript:void(0)" class="go_set_addr" onclick="goToSetAddr();">去设置</a>
+			</div>
+			<!--未设置邮寄地址对话框-->
+		</section>
+	</body>
+	<script>
+		require("common");
+		require("countdown");
+		var goTop = require("gotop");
+		var Dialog = require("dialog");
+		var slideImg = require("slider");
+		var baidu = require("baiduTemplate");
+		var Dragload = require("dragload");
+		baseJS.App.initPage('宝贝详情', 0, '', 1, '', 1, getCartItemCount(), 'gotoCart');
+	</script>
+	<!-- 轮播相关js开始 -->
+	<script>
+	</script>
+	<!-- 轮播相关js结束 -->
+
+	<!-- 立即购买相关js开始 -->
+	<script>
+		var addrDialog = {};
+		var payDialog = {};
+		$(function() {
+			goTop.init();
+			baseJS.util.doRequest("", server + "/seckill/detail.cf", strParamToObj(getAllUrlParam()), function(backData) {
+				if(backData.status != "success"){
+					alert(backData.message?backData.message:backData.status);
+					baseJS.App.sendToApp('close', '{"callback":"console.log"}');
+					return false;
+				}
+				data = backData.data;
+				seckillConfigDetailDTO = data.seckillConfigDetailDTO;
+				// 渲染
+				$('#seckill_tmp').before(baidu.template("seckill_tmp", data));
+				$('.footer_nav').clone().css({
+					'position': 'relative',
+					'visibility': 'hidden'
+				}).appendTo('section[role=main]');
+				// 加载宝贝详情事件
+				new Dragload(function(){
+					$('.product_intorduce_content').html(seckillConfigDetailDTO.goodsMessagesDTO.description+ $(".product_imgs").html() + "<br>");
+					var outerH = $('#plus_header').outerHeight() + $('.footer_nav:last').outerHeight();
+					$('.product_introduce').css("min-height",$(window).height()-outerH- 88*2);
+
+					$('html,body').animate({'scrollTop':$('.product_introduce').offset().top-$('#plus_header').outerHeight()},200);
+
+                    $('.product_sale, .product_ask').show();
+                }).init();
+				// 图片大小修正
+				var wfull = $(window).width();
+				$('.wfull img').width(wfull + 'px');
+				$('.wfull img').height(wfull + 'px');
+				$('.wfull').width(wfull + 'px');
+				$('.wfull').height(wfull + 'px');
+				// 图片轮播
+				var slide = new slideImg({
+					'id': '#product_slide',
+					'imgWidth': wfull,
+					'time': 5000,
+					'dec': false
+				});
+				slide.init();
+				// 弹窗设置
+				var addrEmpty = data.addrEmpty,
+					paycodeEmpty = data.paycodeEmpty;
+				addrDialog = new Dialog({
+					'id': '#not_set_addr',
+					'position': 'middle',
+					'close_btn': '.addr_close_btn',
+					'cover_hide': true,
+					'close_callback': function() {
+						addrEmpty = "false";
+						setTimeout(function(){
+							if (paycodeEmpty == "true") {
+								payDialog.show();
+							}
+						},500);
+					}
+				});
+				payDialog = new Dialog({
+					'id': '#not_set_paycode',
+					'position': 'middle',
+					'close_btn': '.paycode_close_btn',
+					'cover_hide': true,
+					'close_callback': function() {
+						paycodeEmpty == "false";
+						setTimeout(function(){
+							if (addrEmpty == "true") {
+								addrDialog.show();
+							}
+						},500);
+					}
+				});
+				if (addrEmpty == "true") {
+					addrDialog.show();
+				} else {
+					if (paycodeEmpty == "true") {
+						payDialog.show();
+					}
+				}
+				var startTime = parseInt(seckillConfigDetailDTO.startTime); // 秒杀开始时间
+				var endTime = parseInt(seckillConfigDetailDTO.endTime); // 秒杀结束时间
+				var snowTime = data.nowTime; // 服务器当前时间
+				var nowTime = snowTime != null ? parseInt(snowTime) : new Date().getTime();
+				var buyRightNowObject = $("#buyRightNow");
+				var soldOutFlag = seckillConfigDetailDTO.soldOutFlag;
+				if (soldOutFlag) {
+					$("#detailCountDown").hide();
+					buyRightNowObject.text('已售罄').addClass('disabled');
+				} else {
+					if (startTime > nowTime) {
+						// 还未开始
+						if (buyRightNowObject.hasClass('disabled')) return;
+						buyRightNowObject.text('即将秒杀').addClass('disabled');
+						$("#time_num_title").html("距开始还有：");
+						$("#time_num").show();
+						daojishiNum('time_num', buy, startTime, nowTime)('time_num_1', endBuy, endTime, nowTime);
+					} else if (startTime > nowTime && endTime - nowTime > 0) {
+						// 正在进行
+						$("#time_num_title").html("剩余时间：");
+						$("#time_num_1").show();
+						daojishiNum('time_num_1', endBuy, endTime, nowTime);
+					} else if (startTime < nowTime && endTime - nowTime > 0) {
+						// 正在进行
+						$("#time_num_title").html("剩余时间：");
+						$("#time_num_1").show();
+						daojishiNum('time_num_1', endBuy, endTime, nowTime);
+						$('.buy_btn').attr('disabled', false).addClass('red_button');
+					} else {
+						// 已结束
+						$("#detailCountDown").hide();
+						buyRightNowObject.text('已售罄').addClass('disabled');
+					};
+				}
+				buyRightNowObject.css("visibility","visible");
+				//顶部图片放大
+				var images_top = [];
+				var imageString_top = "";
+				$("#product_slide img").each(function(i) {
+					images_top.push('{"url":"' + this.src + '"}');
+				});
+				imageString_top = '{"index":"#xs#","imgs":[' + images_top.toString() + ']}';
+				$("#product_slide img").each(function(i) {
+					$(this).bind("click", function() {
+						var newImageString_top = imageString_top.replace("#xs#", i);
+						baseJS.App.showPicture(newImageString_top);
+					});
+				});
+				$("#detail_content").on("click","img", function() {
+					var images = [];
+					var imageString = "";
+					var index = 0;
+					var that = this;
+					$("#detail_content img").each(function(i) {
+						if($(this).not($(that)).length === 0) index = i;
+						images.push('{"url":"' + this.src + '"}');
+					});
+					imageString = '{"index":"#xs#","imgs":[' + images.toString() + ']}';
+					var newImageString = imageString.replace("#xs#", index);
+					baseJS.App.showPicture(newImageString);
+				});
+				$("#buyRightNow").click(function() {
+					// 禁用按钮，防止多次提交
+					var buyRightNowObject = $(this);
+					if (buyRightNowObject.attr('disabled')) return;
+					if (buyRightNowObject.hasClass('disabled')) return;
+					buyRightNowObject.text('提交中').addClass('disabled');
+					baseJS.util.doRequest('', server + '/seckill/snapUp.cf', {
+						sid: seckillConfigDetailDTO.id,
+						categoryId: seckillConfigDetailDTO.seckillCategoryId
+					}, function(backData) {
+						if (backData.status == 'success') {
+							newtab("/app/user/order/confirm/seckill.html?sid=" + seckillConfigDetailDTO.id + "&prn=" + backData.data);
+							buyRightNowObject.text("立刻抢购").removeClass("disabled").removeAttr("disabled");
+						} else {
+							buyRightNowObject.text("立刻抢购");
+							buyRightNowObject.unbind("click");
+							baseJS.App.sendToApp('flushAlert', '{"text":"' + backData.message + '","position":"bottom","time":"3000"}');
+						}
+					});
+				});
+			});
+		});
+
+		function buy() {
+			var h = $('#hour_time_num').text(),
+				m = $('#min_time_num').text(),
+				s = $('#sec_time_num').text();
+			var buy_btn = $('.buy_btn');
+			if (h == 00 && m == 00 && s == 00) {
+				$("#time_num").hide();
+				$("#time_num_1").show();
+				$("#time_num_title").html("剩余时间：");
+				buy_btn.attr('disabled', false).addClass('red_button').removeClass('disabled').text("立刻抢购");
+				buy_btn.click(function() {});
+			}
+		}
+		var endBuy = function() {
+			var h = $('#hour_time_num_1').text(),
+				m = $('#min_time_num_1').text(),
+				s = $('#sec_time_num_1').text();
+			var buy_btn = $('.buy_btn');
+			if (h == 00 && m == 00 && s == 00) {
+				$("#detailCountDown").hide();
+				buy_btn.attr('disabled', true).removeClass('red_button').addClass('disabled').text("已结束");
+				buy_btn.click(function() {});
+			}
+		};
+		var goToSetUp = function() {
+			payDialog.hide();
+			newtab("/app/user/paypassword/new.html");
+		};
+		var goToSetAddr = function() {
+			addrDialog.hide();
+			newtab("/app/user/address/index.html?type=0");
+		};
+		
+		//订单确认后的回调函数
+		window.orderOverCallback = function() {
+			window.location.href = "/app/user/order.html";
+		};
+		
+		// 设置密码、设置收货地址回调
+		var passwordSetCallback = onresume = function() {};
+	</script>
+
+</html>

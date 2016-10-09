@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>添加收货地址</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/style/style.css">
+	<link rel="stylesheet" href="/static/style/memberinfo.css"/>
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.form.min.js"></script>
+<script type="text/javascript" src="/static/modules/way.min.js"></script>
+<script type="text/javascript" src="/static/modules/page/user/memberaddress.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.form.min.js"></script>
+<script type="text/javascript" src="/static/modules/way.min.js"></script>
+<script type="text/javascript" src="/static/modules/page/user/memberaddress.js"></script>
+
+</head>
+<body>
+<!--start顶部导航条navbar
+<div class="navBar">
+    <a style="background-color: inherit;float: left" href="/wap/user/memberdetail.html"><img src="../../img/user/back.png"></a>
+    <span class="navTitle">收货地址管理</span>
+</div>
+-->
+<a class="add_newaddress" href="/wap/user/addmemberaddress.html">添加新地址</a>
+<div class="list-address" way-repeat="addresslist">
+   <ul>
+       <li>
+        姓名:<span way-data="receiver"></span>
+       </li>
+       <li >
+           手机:<span way-data="telphone"></span>
+       </li>
+       <li >
+           省市:<span way-data="provincename"></span>&nbsp;&nbsp;<span way-data="cityname"></span>
+       </li>
+       <li >
+           地址:<span way-data="districtname"></span>&nbsp;&nbsp;<span way-data="location"></span>
+       </li>
+       <a class="addreditmenu" href="javascript:void(0)" onclick="edit(this)"><input  type="text" hidden="hidden" way-data="id"/>编辑</a>
+       <a class="addreditmenu" href="javascript:void(0)" onclick="del(this)"><input type="text"  hidden="hidden" way-data="id"/>删除</a>
+   </ul>
+</div>
+</body>
+
+<script>
+	require("page/user/memberaddress");
+</script>
+
+</html>

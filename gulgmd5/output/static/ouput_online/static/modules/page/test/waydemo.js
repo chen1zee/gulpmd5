@@ -1,0 +1,1 @@
+define("page/test/waydemo",function(a){a("common"),way=a("way.min"),way.w.ready(function(){way.watchAll(function(a,n){console.log("Something changed.",{selector:a,value:n})})}),$(function(){var a={name:"name",age:20,gender:"121212"};way.set("myFormData",a),$("#btnpost").click(function(){var a=way.get("myFormData");$.each(a,function(a,n){alert(a+"-"+n)})})})});

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html id="html">
+<head>
+    <title>{{headTitleShow(headTitle)}}</title>
+    <link rel="stylesheet" href="/static/style/sheet/orderCheck.css?v=f4d89"/>
+    <link rel="stylesheet" href="/static/style/jquery.dataTables.min.css?v=728b7"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+    <script src="/static/lib/vue.js?v=833dd"></script>
+<link rel="stylesheet" type="text/css" href="/static/style/plus.css?v=80ee0">
+
+</head>
+<body id="body">
+    <div id="bg" class="bg">
+        <!-- 标题-->
+        <div class="header"><img src="/static/img/ico/user_grey.png?v=d5930" alt="" class="header__icon"/>
+            <p class="header__title">{{headTitleShow(headTitle)}}</p>
+            <p class="state" v-bind:class="{active:(checkFlagState == 0)}">{{showCheckState(checkFlagState)}}</p>
+        </div>
+        <!-- 单据信息-->
+        <div class="order-wrap">
+            <p v-on:touchstart="openCloseSheet()" class="sheet-btn">
+                <span class="mid">{{openCloseSheetMsg}}单据信息</span>
+                <img id="sheetBtnIcon" class="right" v-bind:src="openCloseSheetFlag ? '/static/img/ico/go_down.png?v=e4916':'/static/img/ico/go_up.png?v=5727c'" alt=""/>
+            </p>
+            <div v-bind:style="{height:(sheetHeightNow + 'px')}" id="sheet" class="sheet">
+                <!--<div class="sheet__bar clearfix">-->
+                <!--<span>单据编号:</span>-->
+                <!--<p>123123123213</p>-->
+                <!--</div>-->
+                <!--<div class="sheet__bar clearfix">-->
+                <!--<span>单据日期:</span>-->
+                <!--<p class="bold">2016-09-11 21:30</p>-->
+                <!--</div>-->
+
+                <div v-for="sheetData in sheetDatas" track-by="$index" class="sheet__bar clearfix">
+                    <span >{{sheetTransiteTitle(sheetData.fieldname)}}:</span>
+                    <p v-bind:class="sheetData.type == 'date'? 'bold ': ''">{{sheetTransitePara(sheetData)}}</p>
+                </div>
+
+
+
+            </div>
+            <!-- 为了让table 滚起来-->
+            <div class="big-table-wrap">
+                <div class="table-wrap">
+
+                    <table id="dataTable">
+                        <thead>
+                        <tr>
+                            <th>序</th>
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>批号</th>
+                            <th>规格</th>
+                            <th>单位</th>
+                            <th>数量</th>
+                            <th>进价</th>
+                            <th>金额</th>
+                            <th>备注</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>合</td>
+                            <td>计：</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- x轴滚动条-->
+                <div id="scrollWrapX" class="scroll-wrap-x">
+                    <div id="scrollBarX"></div>
+                </div>
+                <!-- y轴滚动条-->
+                <div id="scrollWrapY" class="scroll-wrap-y">
+                    <div id="scrollBarY"></div>
+                </div>
+
+
+                <!--<div id="paginationWrap"></div>-->
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!-- 最下方公司版权 -->
+<p class="explain">
+    ©2016 金搏软件
+</p>
+
+
+    </div>
+
+
+    <!-- 审批按钮 -->
+
+    <div class="check-btn-wrap">
+
+        <p v-on:touchstart="checkBtnFlag ? '':openCheck()" class="check-btn first" v-bind:class="{active:checkBtnFlag}">
+            审批
+        </p>
+        <p v-on:touchstart="viewCheckOpinion()" class="check-btn second">
+            查看审批
+        </p>
+
+
+    </div>
+
+    <!-- 审批蒙层 & 确定 -->
+    <div id="mask" v-bind:class="{'active':checkFlag}" class="mask">
+        <div class="check-wrap">
+            <p class="title">
+                <span class="mid">审批</span>
+                <img v-on:touchstart="closeCheck()" id="closeMask" src="/static/img/ico/close_01.png?v=ffb1f" alt="" class="right"/>
+            </p>
+            <div class="btn-wrap clearfix">
+                    <div v-bind:class="{pass:checkResultFlag == 1}" v-on:touchstart="passCheck()" class="btn">
+
+                        <img v-bind:src="(checkResultFlag == 1) ? '/static/img/ico/completed-white.png?v=d50d0':'/static/img/ico/wait_complete.png?v=0746a'" alt=""/>
+                        <span>同意</span>
+                    </div>
+                    <div v-bind:class="{unpass:(checkResultFlag == -1)}" v-on:touchstart="unpassCheck()" class="btn">
+                        <img v-bind:src="(checkResultFlag == -1) ? '/static/img/ico/close-white.png?v=ebde9': '/static/img/ico/wait_complete.png?v=0746a'" alt=""/>
+                        <span>不同意</span>
+                    </div>
+
+
+
+
+                <!--<button v-bind:class="{active:checkResult == 'pass'}" v-on:touchstart="passCheck()">通过</button>-->
+                <!--<button v-bind:class="{active:checkResult == 'unpass'}" v-on:touchstart="unpassCheck()">作废</button>-->
+
+            </div>
+            <textarea v-bind:diabled="" placeholder="填写审批意见" class="opinion" v-model="checkOpinion"></textarea>
+
+            <div v-show="(checkResultFlag == -1)" class="unpass-wrap">
+                <span class="title">返回流程：</span>
+                <select v-model="checkDenyType"  class="choice" v-bind:disabled="(checkResultFlag != -1) ? 'disabled':false" id="">
+                    <!-- checkResultFlag当 不同过时 ，跟通过时-->
+                    <option v-bind:selected="(checkResultFlag == -1) ? true:''" v-bind:value="(checkResultFlag == -1) ? -1:''">{{(checkResultFlag == -1) ?'上一流程':'不返回'}}</option>
+                    <option v-bind:value="-2">返回制单人</option>
+                </select>
+            </div>
+            <p v-on:touchstart="checkComfirmFlag ? '' : sendCheck()" v-bind:class="{active:checkComfirmFlag}" class="confirm-btn">{{checkComfirmWord}}</p>
+        </div>
+
+
+    </div>
+
+    <!-- 查看之前及自己的审批-->
+    <div v-show="viewCheckOpenFlag" id="checkMask" class="check-mask">
+        <div class="wrap">
+            <p class="title">
+                <span>审批记录</span>
+                <img v-on:touchstart="closeCheckOpinion()" src="/static/img/ico/close_01.png?v=ffb1f" alt=""/>
+            </p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>序</td>
+                        <td>审批人</td>
+                        <td>审批状态</td>
+                        <td>审批意见</td>
+                        <td>日期</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="checkOpinionA in checkOpinionArr" track-by="xorder">
+                        <td>{{checkOpinionA.xorder}}</td>
+                        <td>{{checkOpinionA.username}}</td>
+                        <td>{{showCheckFlag(checkOpinionA.checkflag)}}</td>
+                        <td class="opinion">{{checkOpinionA.checkremark}}</td>
+                        <td>{{checkOpinionA.sdate}}</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/plugins/md5.js?v=e546d"></script>
+<script type="text/javascript" src="/static/modules/jquery.dataTables.min.js?v=4c9e9"></script>
+<script type="text/javascript" src="/static/modules/page/sheet/ordercheck.js"></script>
+
+
+<script>
+    require("page/sheet/ordercheck");
+</script>
+
+</html>

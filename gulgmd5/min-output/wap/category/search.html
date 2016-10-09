@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style/plus.css">
+
+<script type="text/javascript" src="/static/modules/jquery.js"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js"></script>
+<script type="text/javascript" src="/static/modules/common.js"></script>
+<script type="text/javascript" src="/static/modules/gotop.js"></script>
+<script type="text/javascript" src="/static/modules/loadmore.js"></script>
+<script type="text/javascript" src="/static/modules/imglazyload.js"></script>
+
+</head>
+
+	<body>
+		<section role="main">
+			<!-- 搜索框开始 -->
+			<div class="simple_search_form">
+				<form id="search_form" action="#" method="get" onsubmit="return searchSubmit();">
+					<input type="search" id="keyword" name="keyword" placeholder="搜索喜欢的宝贝" style="padding-left:30px;" onkeyup="checkInput(this)" autofocus="autofocus" />
+					<input type="submit" value="搜索" id="search_button" />
+				</form>
+			</div>
+			<!-- 搜索框结束 -->
+			<!-- 搜索历史开始 -->
+			<div id="search_result" class="row_list">
+				<ul id="oneloadmore">
+					<li class="load_more" style="height:24px;line-height24px;padding:10px;">
+						<img src="/static/img/ico/loading.png" alt="加载更多" />
+						<span>加载更多...</span>
+					</li>
+				</ul>
+			</div>
+			<div id="search_history" class="grey">
+				<ul>
+				</ul>
+				<a href="javascript:void(0)" onclick="removeAllSearchHisotry()">清空搜索历史</a>
+			</div>
+			<!-- 搜索历史结束 -->
+		</section>
+	</body>
+	<script type="text/javascript">
+		require("common");
+		var goTop = require("gotop");
+		var Loadmore = require("loadmore");
+		var Imglazyload = require("imglazyload");
+		$(function() {
+			baseJS.App.initPage('搜索', 0, '', 0, '', 1, 0, 'gotoCart');
+			goTop.init();
+			// 初始化加载搜索历史，并绑定点击历史和删除搜索历史按钮事件
+			$("#keyword").focus();
+			$("#oneloadmore li.load_more").hide();
+			readSearchHistoryList();
+			$('#search_history ul').delegate('li', 'click', function(e) {
+				if (e.target.nodeName.toLocaleLowerCase() != 'li') return;
+				$('#keyword').val($(this).text()).get(0).focus();
+			});
+			$('#search_history ul').delegate('i.delete', 'click', function(e) {
+				removeSearchHistory($(this).parent('li').index());
+			});
+		});
+	</script>
+	<!-- 读写搜索历史相关函数开始 -->
+	<script>
+		function callBackFunction(data) {
+			var apendHtml = "";
+			if (data.length > 0) {
+				$("#oneloadmore li.load_more").show();
+				for (var i = 0; i < data.length; i++) {
+					var liHtml = [];
+					liHtml.push('<li class="add"><a href="{0}"  target="_blank" title="{1}">');
+					liHtml.push('<img src="'+defaultProImg+'" _src="{2}" alt="产品" /><div class="row_list_right"><div class="product_name">');
+					liHtml.push('{3}</div><div class="price_area">');
+					liHtml.push('<span class="discount_price">￥{4}</span><span class="old_price">{5}</span></div></div></a></li>');
+					data[i].originalPrice = (data[i].originalPrice == data[i].salesPrice || data[i].originalPrice==0) ? "" : "￥" + toMoney(data[i].originalPrice);
+					apendHtml += baseJS.util.formatString(liHtml.join(''), '/app/goods/index.html?id=' + data[i].id,
+						data[i].name, data[i].thumbnail, data[i].name, toMoney(data[i].salesPrice), data[i].originalPrice);
+				}
+			}
+			Imglazyload.update("#oneloadmore");
+			return apendHtml;
+		}
+
+		function searchSubmit() {
+			$("#oneloadmore li.add").remove();
+			var keyword = $("#keyword").val();
+			keyword = $.trim(keyword);
+			if ("" == keyword) {
+				baseJS.App.sendToApp('flushAlert', '{"text":"请输入搜索内容","position":"middle","time":"3000"}');
+				return false;
+			}
+			$('#keyword').val(keyword);
+			if (keyword.length > 20) {
+				baseJS.App.sendToApp('flushAlert', '{"text":"搜索内容不能超过20个字哟","position":"middle","time":"3000"}');
+				return false;
+			}
+			if (loadMore) {
+				loadMore.unbindEventHandler();
+				loadMore.changeLoadLayer(0, '');
+			}
+			Imglazyload.update("#oneloadmore");
+			var loadMore = new Loadmore({
+				'id': 'oneloadmore',
+				'initUrl': server + '/goods/goodsForSearch.cf?page={pageValue}&keyword=' + keyword,
+				'queryCallback': callBackFunction
+			});
+			loadMore.init();
+			loadMore.load();
+			$("#oneloadmore li.load_more").show();
+			$("#search_result").show();
+			$("#search_history").hide();
+			setSearchHistory();
+			readSearchHistoryList();
+			return false;
+		}
+
+		function checkInput(thisObject) {
+				if (thisObject.value == "") {
+					$("#search_result").hide();
+					$("#search_history").show();
+					readSearchHistoryList();
+				}
+			}
+		
+			//添加搜索历史
+		function setSearchHistory() {
+				var curSearchStr = $('#keyword').val();
+				curSearchStr = $.trim(curSearchStr);
+				if (curSearchStr == '') {
+					$('#keyword').val("");
+					return false;
+				}
+				var searchArr = readSearchHistoryArr();
+				// 判断是否已搜索过此字符串
+				for (var i in searchArr) {
+					if (curSearchStr === searchArr[i]) {
+						searchArr.splice(i, 1);
+						break;
+					}
+				}
+				// 搜索结果最多保存10个
+				var maxHistoryNum = 10;
+				if (searchArr.length > maxHistoryNum - 1) {
+					searchArr.splice(maxHistoryNum - 1, searchArr.length - maxHistoryNum + 1);
+				}
+				// 拼接成字符串存储到cookie
+				if (searchArr.length > 0) {
+					var newSearchStr = curSearchStr + '|' + searchArr.join('|');
+				} else {
+					var newSearchStr = curSearchStr;
+				}
+				localStorage.setItem('search_history', newSearchStr);
+			}
+			// 读取搜索历史并写入html
+
+		function readSearchHistoryList() {
+				var searchArr = readSearchHistoryArr();
+				var outHtml = '';
+				for (var i in searchArr) {
+					outHtml += '<li>' + searchArr[i] + '<i class="delete"></i></li>';
+				}
+				$('#search_history ul').html(outHtml);
+			}
+			// 读取搜索历史
+			// return array
+
+		function readSearchHistoryArr() {
+				var searchStr = localStorage.getItem('search_history');
+				if (searchStr) {
+					return searchStr.split('|');
+				} else {
+					return [];
+				}
+			}
+			// 删除单个搜索历史
+			// @param int order 点击的删除历史按钮dom对象序号
+
+		function removeSearchHistory(order) {
+				var searchArr = readSearchHistoryArr();
+				searchArr.splice(order, 1);
+				localStorage.setItem('search_history', searchArr.join('|'));
+				$('#search_history ul li').eq(order).remove();
+			}
+			// 清空搜索历史
+
+		function removeAllSearchHisotry() {
+			localStorage.setItem('search_history', '');
+			$('#search_history ul').html('');
+		}
+	</script>
+	<!-- 读写搜索历史相关函数结束 -->
+
+</html>

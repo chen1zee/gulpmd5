@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+	<title>单据信息</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="height=device-height,width=device-width,user-scalable=no,initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="telephone=no,email=no" name="format-detection" />
+<link type="text/css" rel="stylesheet" href="/static/style/main.css?v=28b7d">
+<!--<link type="text/css" rel="stylesheet" href="../style/ui.jqgrid.css">-->
+<script type="text/javascript" src="/static/lib/mod.js?v=73b2f"></script>
+
+</HEAD>
+
+<BODY>
+	<!-- 用户信息开始 -->
+	<div id="user_info">
+		<a href="javascript:void(0)">
+			<div id="user_info_img" class="grey_img"></div>
+			<div id="user_info_detail">
+				<span id="check">单据信息</span>
+			</div>
+		</a>
+	</div>
+
+	<section role="main">
+		<div class="addr_form">
+			<form id="addrForm" method="post" enctype="multipart/form-data">
+<!--			<label>
+				<span style="color:#FF0000">*个人姓名：</span>
+				<input type="text" name="customername" value="" id="CustomerName" placeholder="请输入您的姓名" readonly="true" autofocus="true"/>
+			</label>
+			<label>
+				<span style="color:#FF0000">*联系电话：</span>
+				<input type="text" name="phone" id="phone" placeholder="请输入您的联系电话"/>
+			</label>
+			<label>
+			<span>电子邮件：</span>
+				<input type="text" name="mail" id="mail" placeholder="请输入电子邮件" />
+			</label>
+			<label>
+				<span>腾讯QQ：</span>
+				<input type="text" name="qq" id="qq" placeholder="请输入QQ号码" />
+			</label>-->
+
+			</form>
+		</div>
+
+		<table id="gridTable"></table>
+		<div id="gridPager"></div>
+
+	</section>
+	<span>
+<div class="add_addr_bar">
+	<a href="javascirpt:void(0)" onclick="close2()"><img src="/static/img/ico/add_addr.png?v=b9687">确定</a>
+<!--
+	<a href="#" onclick="savecheckCard()"><img src="/static/img/ico/add_addr.png?v=b9687">审批</a>
+	<a href="#" onclick="savecheckCard()"><img src="/static/img/ico/add_addr.png?v=b9687">不同意</a>
+	<a href="#" onclick="savecheckCard()"><img src="/static/img/ico/add_addr.png?v=b9687">作废</a>
+-->
+<br>
+</div>
+</span>
+	<!--<span class="company">联若科技</span>-->
+</BODY>
+	<script type="text/javascript" src="/static/modules/jquery.js?v=53549"></script>
+<script type="text/javascript" src="/static/modules/plugins/plus.js?v=37e8a"></script>
+<script type="text/javascript" src="/static/modules/jquery.base.js?v=57c70"></script>
+<script type="text/javascript" src="/static/modules/common.js?v=101cc"></script>
+<script type="text/javascript" src="/static/modules/jquery.form.min.js?v=86ed3"></script>
+<script type="text/javascript" src="/static/modules/jquery.jqGrid.min.js?v=bb7f9"></script>
+<script type="text/javascript" src="/static/modules/grid.locale-cn.js?v=afce3"></script>
+<script type="text/javascript" src="/static/modules/jquery.fmatter.js?v=73cba"></script>
+<script type="text/javascript" src="/static/modules/page/sheet/check.js?v=6e7f3"></script>
+
+<script type="text/javascript">
+	require("page/sheet/check");
+</script>
+
+</HTML>

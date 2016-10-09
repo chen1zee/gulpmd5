@@ -1,0 +1,140 @@
+/*标题*/
+h1{
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background-color: #37ce87;
+    margin-bottom: 2px;
+
+}
+
+/* 选择报表x 轴单位*/
+.unit-wrap{
+    height: 30px;
+    padding-top: 5px;
+    padding-left: 10px;
+    background-color: #fff;
+}
+.unit-wrap__btn{
+    float: left;
+    box-sizing: border-box;
+    margin-right: 20px;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    text-align: center;
+    background-color: #aaa;
+    color: #fff;
+
+}
+/*按钮被选中*/
+.unit-wrap__btn.active{
+    background-color: #ff3932;
+}
+
+/*   日期选择框*/
+.date-wrap{
+    position: relative;
+    height: 30px;
+    padding: 5px;
+    min-width: 300px;
+    border-top: 3px solid #ff3932;
+    border-left: 3px solid #ff3932;
+    border-right: 3px solid #ff3932;
+    background-color: #fff;
+    
+
+}
+.date-wrap input{
+    float: left;
+    box-sizing: border-box;
+    width: 65%;
+    display: none;
+    border: 1px solid #333;
+}
+.date-wrap input.active{
+    display: block;
+}
+.date-wrap button{
+    position: absolute;
+    height: 30px;
+    top: 5px;
+    right: 5%;
+    width: 30%;
+    border: 0;
+    font-size: 20px;
+    background-color: #37ce87;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+
+}
+
+    /*报表    用 echart 生成*/
+.chart{
+    box-sizing: border-box;
+    border-bottom: 3px solid #ff3932;
+    border-left: 3px solid #ff3932;
+    border-right: 3px solid #ff3932;
+
+    width: 100%;
+    height: 500px;
+    background-color: #fff;
+}
+.chart.transform{
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+/*报表数据   以表单形式展现*/
+.sheet-data{
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #37ce87;
+}
+
+
+/*common 引入*/
+/* common */
+
+.grey {
+	color: #82898d;
+}
+.yellow {
+	color: #ffb400;
+}
+.red {
+	color: #ff5a5f;
+}
+.green {
+	color: #63c736;
+}
+.hide {
+	display: none;
+}
+.show {
+	display: block;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.cl {
+	clear: both;
+}
+
+
+/*  下方    公司声明*/
+.explain{
+	margin-top: 9px;
+	margin-bottom: 9px;
+	font-size: 10px;
+	color: #999;
+	text-align: center;
+}
